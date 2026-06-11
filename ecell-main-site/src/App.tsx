@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Loader } from './components/Loader/Loader'
-import logoImg from './assets/logo.png'
+import Lightfall from './components/Backgrounds/Lightfall'
 
 function App() {
   const [isLoaderVisible, setIsLoaderVisible] = useState(true)
@@ -19,45 +19,24 @@ function App() {
 
       <div className={`app-content ${isContentVisible ? 'visible' : ''}`}>
         <section id="center">
-          <div className="logo-container">
-            <img src={logoImg} className="ecell-logo" alt="E-Cell IITK" />
-          </div>
-          <div className="headline">
-            <h1>Entrepreneurship Cell</h1>
-            <p className="subtitle">IIT Kanpur</p>
-          </div>
-          <div className="welcome-box">
-            <p>Creating a startup ecosystem that fosters innovation, incubation, and acceleration.</p>
-          </div>
+          {isContentVisible && (
+            <Lightfall
+              colors={['#fbc316']}
+              backgroundColor="#000000"
+              streakWidth={0.7}
+              streakLength={1.8}
+              density={0.8}
+              twinkle={0.45}
+              glow={0.2}
+              zoom={1.8}
+              mouseStrength={0}
+              mouseRadius={0.1}
+              speed={0.5}
+              streakCount={4}
+              backgroundGlow={0.5}
+            />
+          )}
         </section>
-
-        <div className="ticks"></div>
-
-        <section id="next-steps">
-          <div id="docs">
-            <h2>Our Vision</h2>
-            <p>Empowering minds, driving entrepreneurship, and cultivating future industry leaders.</p>
-          </div>
-          <div id="social">
-            <h2>Connect with us</h2>
-            <p>Join our networks to stay updated.</p>
-            <ul>
-              <li>
-                <a href="https://github.com/ecelliitk" target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href="https://ecelliitk.org" target="_blank" rel="noopener noreferrer">
-                  Website
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <div className="ticks"></div>
-        <section id="spacer"></section>
       </div>
     </>
   )
