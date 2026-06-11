@@ -3,24 +3,31 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import './Loader.css';
+import logoImg from '../../assets/logo.png';
 
 gsap.registerPlugin(CustomEase);
 
 interface LoaderProps {
-  name?: string;
   subtitle?: string;
   onTransitionStart?: () => void;
   onComplete?: () => void;
 }
 
+const bgWords = [
+  'E Summit',
+  'Startup Expo',
+  'Entreverse',
+  'YEC',
+  'UpStart',
+  'TEDx',
+];
+
 export const Loader: React.FC<LoaderProps> = ({
-  name = 'E-CELL',
-  subtitle = 'ENTREPRENEURSHIP CELL',
+  subtitle = 'ECELL IITK',
   onTransitionStart,
   onComplete,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const nameChars = Array.from(name);
 
   const onTransitionStartRef = useRef(onTransitionStart);
   const onCompleteRef = useRef(onComplete);
@@ -51,7 +58,7 @@ export const Loader: React.FC<LoaderProps> = ({
         gsap.set('.openning-portfolio', { opacity: 0, scaleX: 0.1 });
         gsap.set('.openning-num', { opacity: 0 });
         gsap.set('.openning-name-block', { yPercent: 150 });
-        gsap.set('.openning-bg-circle-color-container', { scale: 1, rotate: 0 });
+        gsap.set('.openning-bg-word-container', { scale: 1, rotate: 0 });
         gsap.set('.openning-bg-circle', { scale: 1 });
         gsap.set('.openning-circle', { scale: 0, opacity: 1 });
         
@@ -134,18 +141,13 @@ export const Loader: React.FC<LoaderProps> = ({
           yPercent: 0,
         });
 
-        // Compress name horizontally and fade out
+        // Fade out name (logo) and transition to subtitle
         gsap.to('.openning-name', {
           duration: 0.58,
-          delay: 5.38,
-          ease: 'transformEase',
-          scaleX: 0.2,
+          delay: 6.38,
+          ease: 'colorAndOpacityEase',
+          opacity: 0,
           onComplete: () => {
-            gsap.to('.openning-name', {
-              duration: 0.28,
-              ease: 'colorAndOpacityEase',
-              opacity: 0,
-            });
             gsap.to('.openning-portfolio', {
               duration: 0.28,
               ease: 'colorAndOpacityEase',
@@ -157,7 +159,7 @@ export const Loader: React.FC<LoaderProps> = ({
         // Expand portfolio subtitle
         gsap.to('.openning-portfolio', {
           duration: 0.78,
-          delay: 5.98,
+          delay: 6.98,
           ease: 'transformEase',
           scaleX: 1.0,
         });
@@ -221,8 +223,8 @@ export const Loader: React.FC<LoaderProps> = ({
           scale: 1,
         });
 
-        // Decorative colored background circles shrink & rotate
-        gsap.to('.openning-bg-circle-color-container', {
+        // Decorative background words shrink & rotate
+        gsap.to('.openning-bg-word-container', {
           duration: 1.88,
           delay: 3.38,
           ease: 'transformEase',
@@ -245,14 +247,14 @@ export const Loader: React.FC<LoaderProps> = ({
               if (onTransitionStartRef.current) {
                 onTransitionStartRef.current();
               }
-            }, 1680);
+            }, 2680);
 
             timer3 = window.setTimeout(() => {
               document.body.style.overflow = originalStyle;
               if (onCompleteRef.current) {
                 onCompleteRef.current();
               }
-            }, 2480);
+            }, 3480);
           },
         });
       }, containerRef);
@@ -285,11 +287,13 @@ export const Loader: React.FC<LoaderProps> = ({
         </div>
       </div>
       
-      {Array.from({ length: 9 }).map((_, idx) => {
+      {bgWords.map((word, idx) => {
         const indexStr = String(idx + 1).padStart(2, '0');
         return (
-          <div key={idx} className="openning-bg-circle-color-container">
-            <div className={`openning-bg-circle-color-${indexStr}`}></div>
+          <div key={idx} className="openning-bg-word-container">
+            <div className={`openning-bg-word openning-bg-word-${indexStr}`}>
+              {word}
+            </div>
           </div>
         );
       })}
@@ -315,15 +319,7 @@ export const Loader: React.FC<LoaderProps> = ({
       </div>
 
       <div className="openning-name">
-        {nameChars.map((char, idx) => (
-          <span
-            key={idx}
-            className="openning-name-block"
-            style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </span>
-        ))}
+        <img src={logoImg} className="openning-name-block openning-logo" alt="E-Cell IITK Logo" />
       </div>
 
       <div className="openning-portfolio">
