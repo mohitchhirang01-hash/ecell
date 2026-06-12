@@ -115,7 +115,7 @@ vec3 palette(float h) {
 
 vec3 tanhv(vec3 x) {
   vec3 e = exp(-2.0 * x);
-  return (1.0 - e) / (1.0 + e);
+  return (vec3(1.0) - e) / (vec3(1.0) + e);
 }
 
 vec2 sceneC(vec2 frag, vec2 r) {
@@ -123,7 +123,7 @@ vec2 sceneC(vec2 frag, vec2 r) {
   float z = 0.0;
   float d = 1e3;
   vec4 O = vec4(0.0);
-  for (int k = 0; k < 39; k++) {
+  for (int k = 0; k < 18; k++) {
     if (d <= 1e-4) break;
     O = z * normalize(vec4(P, uZoom, 0.0)) - vec4(0.0, 4.0, 1.0, 0.0) / 4.5;
     d = 1.0 - sqrt(length(O * O));
@@ -140,10 +140,8 @@ void mainImage(out vec4 o, vec2 C) {
   vec2 Y = vec2(5e-3, 6.28318530718 / angRings);
 
   vec2 c0 = sceneC(C, r);
-  vec2 cdx = sceneC(C + vec2(1.0, 0.0), r);
-  vec2 cdy = sceneC(C + vec2(0.0, 1.0), r);
-  vec2 dCx = cdx - c0;
-  vec2 dCy = cdy - c0;
+  vec2 dCx = dFdx(c0);
+  vec2 dCy = dFdy(c0);
   dCx.y -= 6.28318530718 * floor(dCx.y / 6.28318530718 + 0.5);
   dCy.y -= 6.28318530718 * floor(dCy.y / 6.28318530718 + 0.5);
   vec2 fw = abs(dCx) + abs(dCy);
@@ -174,14 +172,14 @@ void mainImage(out vec4 o, vec2 C) {
     vec3 col = palette(h);
     float weight = mix(1.5, 1.0 + sin(T + 7.0 * h + 4.0), uTwinkle);
     weight *= (1.0 + mGlow * 2.0);
-    vec2 inner = vec2(length(max(Pp, vec2(-1.0, 0.0))), length(Pp) - zr) - zr;
+    vec2 inner = vec2(length(max(Pp, vec2(-1.0, 0.0))), length(Pp) - zr) - vec2(zr);
     vec2 sm = vec2(1.0) - smoothstep(-rr, rr, inner);
     O.rgb += dot(sm, vec2(exp(tail * Pp.y), 3.0)) * col * weight;
     C.x += Y.x / 8.0;
   }
 
-  float screenY = (C.y * 2.0 - r.y) / r.y;
-  float verticalProgress = 1.0 - iTime * uSpeed * 1.5;
+  float screenY = uv0.y * (r.x / r.y);
+  float verticalProgress = 1.0 - iTime * uSpeed * 0.75;
   float verticalMask = smoothstep(verticalProgress - 0.2, verticalProgress + 0.2, screenY);
   vec3 colr = sqrt(tanhv(max(O.rgb * uGlow - vec3(0.04, 0.08, 0.02), 0.0)));
   o = vec4(colr * verticalMask, uOpacity);
@@ -232,7 +230,7 @@ const Lightfall: React.FC<LightfallProps> = ({
     if (!container) return;
 
     const renderer = new Renderer({
-      dpr: dpr ?? (typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1),
+      dpr: dpr ?? (typeof window !== 'undefined' ? Math.min(1.5, window.devicePixelRatio || 1) : 1),
       alpha: true,
       antialias: true
     });
@@ -277,7 +275,9 @@ const Lightfall: React.FC<LightfallProps> = ({
       uMouseRadius: { value: mouseRadius }
     };
 
-    const program = new Program(gl, { vertex, fragment, uniforms });
+    const isWebGL2 = typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext;
+    const fragmentShaderSource = (isWebGL2 ? '' : '#extension GL_OES_standard_derivatives : enable\n') + fragment;
+    const program = new Program(gl, { vertex, fragment: fragmentShaderSource, uniforms });
     programRef.current = program;
 
     const geometry = new Triangle(gl);

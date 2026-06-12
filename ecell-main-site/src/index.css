@@ -107,3 +107,15 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Hide browser scrollbar globally while maintaining scrolling functionality */
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, and Opera */
+}
