@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import { Loader } from './components/Loader/Loader'
-import { Navbar } from './components/layout/Navbar'
 import { Hero } from './components/hero/Hero'
 import { About } from './components/about/About'
 import { Showcase } from './components/showcase/Showcase'
+import { Navbar } from './components/layout/Navbar'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 
