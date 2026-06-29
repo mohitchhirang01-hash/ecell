@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import './Hero.css';
 import Strands from '../Strands/Strands';
+import logoImg from '../../assets/logo.png';
 
 const PARTICLES_COUNT = 12;
 
@@ -118,7 +119,7 @@ export const Hero: React.FC = () => {
     <section ref={heroRef} className="hero" id="hero">
       {/* Top Left Logo */}
       <div className="hero-logo-container">
-        <img src="/favicon.svg" alt="E-Cell Logo" className="hero-logo" />
+        <img src={logoImg} alt="E-Cell Logo" className="hero-logo" />
       </div>
 
       {/* Background layers */}
