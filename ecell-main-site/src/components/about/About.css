@@ -30,19 +30,16 @@
 .about-container {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 80px;
-  align-items: center;
+  padding: 0 32px;
+  text-align: center;
 }
 
 /* Text Column */
 .about-text-col {
-  text-align: left;
-  min-width: 0;
+  text-align: center;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -86,71 +83,6 @@
   margin: 0;
 }
 
-/* Image Column */
-.about-image-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.about-image-wrapper {
-  position: relative;
-  border-radius: 24px;
-  padding: 10px;
-  background: rgba(241, 159, 17, 0.03);
-  border: 1px solid rgba(241, 159, 17, 0.15);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    0 0 35px rgba(241, 159, 17, 0.03);
-  overflow: hidden;
-  transition: all 0.4s ease;
-  transform-origin: center;
-}
-
-/* Subtle Hover Shift */
-.about-image-wrapper:hover {
-  transform: translateY(-8px) scale(1.01);
-  border-color: rgba(241, 159, 17, 0.35);
-  box-shadow: 
-    0 30px 50px rgba(0, 0, 0, 0.6),
-    0 0 45px rgba(241, 159, 17, 0.08);
-}
-
-.about-img {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  border-radius: 16px;
-  display: block;
-  object-fit: cover;
-  transition: filter 0.5s ease;
-}
-
-/* Decorative Gold Corner Borders */
-.about-image-wrapper::before,
-.about-image-wrapper::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-}
-
-.about-image-wrapper::before {
-  top: 14px;
-  left: 14px;
-  border-top: 2px solid #F19F11;
-  border-left: 2px solid #F19F11;
-}
-
-.about-image-wrapper::after {
-  bottom: 14px;
-  right: 14px;
-  border-bottom: 2px solid #F19F11;
-  border-right: 2px solid #F19F11;
-}
-
 
 /* ==========================================================================
    Responsive Breakpoints
@@ -162,7 +94,6 @@
   }
 
   .about-container {
-    gap: 50px;
     padding: 0 32px;
   }
 
@@ -177,23 +108,7 @@
   }
 
   .about-container {
-    grid-template-columns: 1fr;
-    gap: 50px;
     padding: 0 24px;
-    text-align: center;
-  }
-
-  .about-text-col {
-    text-align: center;
-    order: 1;
-  }
-
-  .about-image-col {
-    order: 2;
-  }
-
-  .about-img {
-    max-width: 360px;
   }
 }
 
@@ -204,7 +119,6 @@
 
   .about-container {
     padding: 0 20px;
-    gap: 40px;
   }
 
   .about-title {
@@ -214,8 +128,5 @@
   .about-desc {
     font-size: 14px;
   }
-
-  .about-img {
-    max-width: 100%;
-  }
 }
+

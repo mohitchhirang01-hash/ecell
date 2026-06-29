@@ -4,40 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BlurText } from '../common/BlurText';
 import './About.css';
 
-import aboutUsImg from '../../assets/about-us.jpg';
-
 gsap.registerPlugin(ScrollTrigger);
 
 export const About: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const imgEl = imageRef.current;
-    if (!imgEl) return;
-
-    const ctx = gsap.context(() => {
-      // Animate image container entry
-      gsap.fromTo(
-        imgEl,
-        { opacity: 0, y: 60, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: imgEl,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section ref={containerRef} className="about-section" id="about">
@@ -45,7 +15,7 @@ export const About: React.FC = () => {
       <div className="about-glow" />
 
       <div className="about-container">
-        {/* Left Column: Text Content */}
+        {/* Centered Text Content */}
         <div className="about-text-col">
           <span className="about-eyebrow">
             <BlurText text="About Us" animateBy="chars" triggerOnMount={false} />
@@ -68,16 +38,10 @@ export const About: React.FC = () => {
             />
           </p>
         </div>
-
-        {/* Right Column: Illustration Image */}
-        <div className="about-image-col">
-          <div ref={imageRef} className="about-image-wrapper">
-            <img src={aboutUsImg} alt="E-Cell Innovation Illustration" className="about-img" />
-          </div>
-        </div>
       </div>
     </section>
   );
 };
 
 export default About;
+
