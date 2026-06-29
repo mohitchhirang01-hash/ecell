@@ -5,6 +5,7 @@ import { Hero } from './components/hero/Hero'
 import { About } from './components/about/About'
 import { Events } from './components/events/Events'
 import { Echo } from './components/echo/Echo'
+import { Navbar } from './components/Navbar/Navbar'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 
@@ -25,6 +26,7 @@ function App() {
         />
       )}
       <div className={`app-content ${showContent ? 'visible' : ''}`}>
+        <Navbar />
         <Hero />
         <About />
         <Events />
@@ -35,6 +37,7 @@ function App() {
 }
 
 export default App
+
 
 
 
