@@ -3,7 +3,7 @@ import './App.css'
 import { Loader } from './components/Loader/Loader'
 import { Hero } from './components/hero/Hero'
 import { About } from './components/about/About'
-import { Showcase } from './components/showcase/Showcase'
+import { Events } from './components/events/Events'
 import { Navbar } from './components/layout/Navbar'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
@@ -28,10 +28,11 @@ function App() {
         <Navbar />
         <Hero />
         <About />
-        <Showcase />
+        <Events />
       </div>
     </>
   )
 }
 
 export default App
+
