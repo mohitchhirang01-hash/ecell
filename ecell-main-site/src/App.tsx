@@ -8,11 +8,9 @@ import { Echo } from './components/echo/Echo'
 import { Gallery } from './components/gallery/Gallery'
 import { Navbar } from './components/Navbar/Navbar'
 
-const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
-
 function App() {
-  const [showContent, setShowContent] = useState(hasSeenLoader)
-  const [loaderDone, setLoaderDone] = useState(hasSeenLoader)
+  const [showContent, setShowContent] = useState(false)
+  const [loaderDone, setLoaderDone] = useState(false)
 
   return (
     <>
@@ -21,7 +19,6 @@ function App() {
           subtitle="ECELL IITK"
           onTransitionStart={() => setShowContent(true)}
           onComplete={() => {
-            sessionStorage.setItem('ecell-loader-seen', 'true')
             setLoaderDone(true)
           }}
         />
