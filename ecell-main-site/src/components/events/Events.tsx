@@ -22,7 +22,7 @@ const eventsList: EventData[] = [
     title: 'E-SUMMIT',
     description: "E-Summit is an annual flagship event of IIT Kanpur effectuated with the intention to foster entrepreneurial initiatives and activities in the campus to accomplish IIT Kanpur's mandate of nurturing India's future technopreneurs. Sharing of entrepreneurship endeavour and experiences, discussion of ideas and opportunities will be a profuse learning experience for the active leaders of entrepreneurship in the savant community who can then disperse these ideas further.",
     icon: <Calendar className="event-icon" size={32} />,
-    accent: 'var(--color-gold)',
+    accent: '#BB8804', // Bright gold
   },
   {
     id: 'tedx',
@@ -30,7 +30,7 @@ const eventsList: EventData[] = [
     title: 'TEDX',
     description: 'TED is a global set of conferences run by the private non-profit Sapling Foundation, under the slogan "Ideas Worth Spreading". TED was founded in 1984 as a one-off event; the annual conference series began in 1990. TEDx IIT Kanpur is an independent initiative by Entrepreneurship Cell, IIT Kanpur, under the umbrella of TED, to organize versatile annual talk series from several eminent speakers from the field of Technology, Entertainment and Design.',
     icon: <Mic className="event-icon" size={32} />,
-    accent: '#eb4034', // Red for TEDx
+    accent: '#A57403', // Deep gold
   },
   {
     id: 'upstart',
@@ -38,7 +38,7 @@ const eventsList: EventData[] = [
     title: 'UPSTART',
     description: 'An event that caters to the budding startups of our country, Upstart stands apart from the conventional Start-up Competition and 10-minute pitching - we strive to give our participants more than just the prize. The start-ups go through multiple rounds of screening, which are essentially brainstorming sessions at different levels and face to face mentoring. Finalists get to develop their ideas and hone their business plans with a panel of mentors.',
     icon: <Rocket className="event-icon" size={32} />,
-    accent: '#34d2eb', // Blue for Upstart
+    accent: '#74460D', // Reddish bronze / amber brown
   },
   {
     id: 'smc',
@@ -46,7 +46,7 @@ const eventsList: EventData[] = [
     title: 'STARTUP MASTER CLASS',
     description: 'In association with Alumni Association, IIT Kanpur, E-Cell organises StartUp Master Class, a highly enriching and enlightening startup event "for Entrepreneurs, from Entrepreneurs". It brings together startups, mentors and investors to build interactions and strengthen the network within the entrepreneurial community.',
     icon: <Users className="event-icon" size={32} />,
-    accent: '#a832ad', // Purple for SMC
+    accent: '#775923', // Olive gold / bronze
   },
   {
     id: 'sip',
@@ -54,7 +54,7 @@ const eventsList: EventData[] = [
     title: 'STARTUP INTERNSHIP PROGRAM',
     description: 'E-Cell, IIT Kanpur achieved great success with Startup Internship Program. The profiles included IT/Programming, Core, and Marketing/Business Development recruitment. The season saw registrations from a total of 151 Startups including Robotics, Ridlr, Dunzo, Pharmeasy, EarlySalary to name a few, witnessing a 73% boom in the total internships offered than the previous year.',
     icon: <Briefcase className="event-icon" size={32} />,
-    accent: '#22c55e', // Green for SIP
+    accent: '#BFAB82', // Light sand / champagne gold
   },
   {
     id: 'hangouts',
@@ -62,7 +62,7 @@ const eventsList: EventData[] = [
     title: 'CAMPUS HANGOUTS',
     description: 'Hangouts is special interactive session specifically targeting the campus students. The session is like an informal discussion between campus junta and entrepreneurship oracles of varied arenas. It involves discussions and brainstorming on entrepreneurship matters. Throughout the year multiple hangout sessions are organised.',
     icon: <Coffee className="event-icon" size={32} />,
-    accent: '#f59e0b', // Amber/yellow for Hangouts
+    accent: '#BB8804', // Bright gold to balance
   },
 ];
 
