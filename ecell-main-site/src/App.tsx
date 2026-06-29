@@ -2,10 +2,13 @@ import { useState } from 'react'
 import './App.css'
 import { Loader } from './components/Loader/Loader'
 import { Hero } from './components/hero/Hero'
+import { About } from './components/about/About'
+
+const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 
 function App() {
-  const [showContent, setShowContent] = useState(false)
-  const [loaderDone, setLoaderDone] = useState(false)
+  const [showContent, setShowContent] = useState(hasSeenLoader)
+  const [loaderDone, setLoaderDone] = useState(hasSeenLoader)
 
   return (
     <>
@@ -13,11 +16,15 @@ function App() {
         <Loader
           subtitle="ECELL IITK"
           onTransitionStart={() => setShowContent(true)}
-          onComplete={() => setLoaderDone(true)}
+          onComplete={() => {
+            sessionStorage.setItem('ecell-loader-seen', 'true')
+            setLoaderDone(true)
+          }}
         />
       )}
       <div className={`app-content ${showContent ? 'visible' : ''}`}>
         <Hero />
+        <About />
       </div>
     </>
   )
