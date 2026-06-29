@@ -98,6 +98,16 @@ export const Hero: React.FC = () => {
             duration: 0.6,
           },
           '-=0.2'
+        )
+        .to(
+          '.hero-logo-container',
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+          },
+          '-=0.4'
         );
     }, heroRef);
 
@@ -106,6 +116,11 @@ export const Hero: React.FC = () => {
 
   return (
     <section ref={heroRef} className="hero" id="hero">
+      {/* Top Left Logo */}
+      <div className="hero-logo-container">
+        <img src="/favicon.svg" alt="E-Cell Logo" className="hero-logo" />
+      </div>
+
       {/* Background layers */}
       <div className="hero-bg-mesh" />
       <div className="hero-grid-overlay" />

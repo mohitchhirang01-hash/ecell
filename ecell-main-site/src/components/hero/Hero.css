@@ -456,3 +456,39 @@
     margin-bottom: 16px;
   }
 }
+
+/* Top Left Logo rules */
+.hero-logo-container {
+  position: absolute;
+  top: 40px;
+  left: 48px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  opacity: 0; /* GSAP animations */
+  transform: translateY(-20px); /* GSAP animations */
+}
+
+.hero-logo {
+  height: 48px;
+  width: auto;
+  opacity: 0.95;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-logo-container {
+    top: 24px;
+    left: 24px;
+  }
+  
+  .hero-logo {
+    height: 38px;
+  }
+}
+
