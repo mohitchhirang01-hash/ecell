@@ -108,14 +108,27 @@ code {
   background: var(--code-bg);
 }
 
-/* Hide browser scrollbar globally while maintaining scrolling functionality */
+/* Custom Scrollbar - Floating Yellow Pill, Transparent Track */
 html {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #F19F11 transparent;
 }
 
-body::-webkit-scrollbar,
-html::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari, and Opera */
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F19F11;
+  border-radius: 999px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BB8804;
 }
