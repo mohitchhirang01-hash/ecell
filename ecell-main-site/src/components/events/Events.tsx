@@ -126,7 +126,7 @@ export const Events: React.FC = () => {
             {eventsList.map((event) => (
               <div 
                 key={event.id} 
-                className="event-card" 
+                className={`event-card event-card-${event.id}`}
                 style={{ '--event-accent': event.accent } as React.CSSProperties}
               >
                 <div className="event-header">
