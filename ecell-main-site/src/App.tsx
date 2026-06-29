@@ -17,7 +17,10 @@ function App() {
   const [loaderDone, setLoaderDone] = useState(false)
 
   useEffect(() => {
-    if (!showContent) return
+    if (!loaderDone) {
+      document.documentElement.classList.add('hide-scrollbar')
+      return
+    }
 
     const handleScroll = () => {
       // Hide scrollbar on hero section (less than 90% of window height)
@@ -35,7 +38,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll)
       document.documentElement.classList.remove('hide-scrollbar')
     }
-  }, [showContent])
+  }, [loaderDone])
 
   return (
     <>
