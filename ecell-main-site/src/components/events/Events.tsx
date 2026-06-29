@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Calendar, Mic, Rocket, Users, Briefcase, ChevronRight } from 'lucide-react';
+import { Calendar, Mic, Rocket, Users, Briefcase, ChevronRight, Coffee } from 'lucide-react';
 import './Events.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,7 +56,16 @@ const eventsList: EventData[] = [
     icon: <Briefcase className="event-icon" size={32} />,
     accent: '#22c55e', // Green for SIP
   },
+  {
+    id: 'hangouts',
+    num: '06',
+    title: 'CAMPUS HANGOUTS',
+    description: 'Hangouts is special interactive session specifically targeting the campus students. The session is like an informal discussion between campus junta and entrepreneurship oracles of varied arenas. It involves discussions and brainstorming on entrepreneurship matters. Throughout the year multiple hangout sessions are organised.',
+    icon: <Coffee className="event-icon" size={32} />,
+    accent: '#f59e0b', // Amber/yellow for Hangouts
+  },
 ];
+
 
 export const Events: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
