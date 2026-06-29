@@ -6,7 +6,10 @@ import { About } from './components/about/About'
 import { Events } from './components/events/Events'
 import { Echo } from './components/echo/Echo'
 import { Gallery } from './components/gallery/Gallery'
+import { Team } from './components/team/Team'
 import { Navbar } from './components/Navbar/Navbar'
+
+const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 
 function App() {
   const [showContent, setShowContent] = useState(false)
@@ -30,14 +33,10 @@ function App() {
         <Events />
         <Echo />
         <Gallery />
+        <Team />
       </div>
     </>
   )
 }
 
 export default App
-
-
-
-
-

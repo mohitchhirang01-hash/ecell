@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Team Section Styles (E-Cell IITK Contact Section)
+   ========================================================================= */
+
+.team-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 48px;
+  background-color: #191C1E; /* Cool dark slate-grey requested */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Background grid lines */
+.team-grid-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(241, 159, 17, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 159, 17, 0.01) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  pointer-events: none;
+}
+
+.team-bg-mesh {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(
+    circle at center,
+    rgba(241, 159, 17, 0.03) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.team-container {
+  position: relative;
+  z-index: 5;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header box styling */
+.team-header-box {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.team-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #F19F11;
+  background: rgba(241, 159, 17, 0.05);
+  border: 1px solid rgba(241, 159, 17, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.team-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.team-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(226, 220, 208, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Members Layout Grid
+   ========================================================================== */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns for a clean 5x2 row alignment */
+  gap: 32px 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Individual Card */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Photo Placeholder Box (Empty/Avatar) */
+.team-photo-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-silhouette {
+  color: rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
+.team-card:hover .team-photo-placeholder {
+  transform: translateY(-6px);
+  border-color: rgba(241, 159, 17, 0.25);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(241, 159, 17, 0.1);
+}
+
+.team-card:hover .avatar-silhouette {
+  color: rgba(241, 159, 17, 0.15);
+  transform: scale(1.05);
+}
+
+/* Hover Social overlay accessibility */
+.team-social-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.team-photo-placeholder:hover .team-social-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Social Buttons */
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(241, 159, 17, 0.3);
+  color: #F19F11;
+  text-decoration: none;
+  transform: scale(0.8) translateY(10px);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.social-btn:hover {
+  background: #F19F11;
+  color: #000000;
+  border-color: #F19F11;
+  box-shadow: 0 0 20px rgba(241, 159, 17, 0.4);
+}
+
+.team-photo-placeholder:hover .social-btn {
+  transform: scale(1) translateY(0);
+}
+
+/* Stagger overlays details sliding in */
+.team-photo-placeholder:hover .social-btn:nth-child(1) { transition-delay: 0.05s; }
+.team-photo-placeholder:hover .social-btn:nth-child(2) { transition-delay: 0.12s; }
+
+/* Info area */
+.team-info {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.team-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  transition: color 0.3s ease;
+}
+
+.team-card:hover .team-name {
+  color: #F19F11;
+}
+
+.team-role {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(226, 220, 208, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .team-section {
+    padding: 80px 32px;
+  }
+
+  .team-heading {
+    font-size: 44px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
+    gap: 28px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-section {
+    padding: 60px 20px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile screen portrait */
+    gap: 24px 16px;
+  }
+
+  .team-name {
+    font-size: 16px;
+  }
+
+  .team-role {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr; /* Single column stack on narrow devices */
+    gap: 32px;
+  }
+
+  .team-photo-placeholder {
+    max-width: 240px; /* Restrict height/width for better alignment */
+    margin: 0 auto;
+  }
+}
