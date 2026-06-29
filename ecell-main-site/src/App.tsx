@@ -4,6 +4,7 @@ import { Loader } from './components/Loader/Loader'
 import { Navbar } from './components/layout/Navbar'
 import { Hero } from './components/hero/Hero'
 import { About } from './components/about/About'
+import { Showcase } from './components/showcase/Showcase'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 
@@ -27,7 +28,7 @@ function App() {
         <Navbar />
         <Hero />
         <About />
-        <div className="scroll-placeholder">Scroll down to test floating navbar</div>
+        <Showcase />
       </div>
     </>
   )

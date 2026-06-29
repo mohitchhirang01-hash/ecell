@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Horizontal Scroll Showcase (Friction & Velocity Slides)
+   ========================================================================== */
+
+.showcase-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.showcase-track {
+  display: flex;
+  width: 200vw;
+  height: 100%;
+  will-change: transform;
+}
+
+.horizontal-slide {
+  width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slide Grid Layout */
+.showcase-grid {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Slide Text Content */
+.showcase-content-wrapper {
+  text-align: left;
+}
+
+.showcase-eyebrow {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.eyebrow-friction {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.eyebrow-velocity {
+  color: #F19F11;
+  background: rgba(241, 159, 17, 0.05);
+  border: 1px solid rgba(241, 159, 17, 0.2);
+}
+
+.showcase-slide-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin: 0 0 28px 0;
+}
+
+.showcase-slide-title span.accent-red {
+  color: #ef4444;
+}
+
+.showcase-slide-title span.accent-gold {
+  color: #F19F11;
+}
+
+.showcase-slide-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  color: rgba(226, 220, 208, 0.7);
+  margin-bottom: 24px;
+}
+
+.showcase-slide-desc:last-child {
+  margin-bottom: 0;
+}
+
+.showcase-slide-desc span.highlight-white {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.showcase-slide-desc span.highlight-red {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.showcase-slide-desc span.highlight-gold {
+  color: #F19F11;
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   Slide 1: Friction Visual Panel (Locked Obstacles)
+   ========================================================================== */
+
+.slide-friction-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(239, 68, 68, 0.03) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.friction-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Grid of Locked Blocks */
+.friction-obstacle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.obstacle-card {
+  border-radius: 16px;
+  padding: 24px;
+  background: rgba(239, 68, 68, 0.01);
+  border: 1px solid rgba(239, 68, 68, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+
+.obstacle-card:hover {
+  background: rgba(239, 68, 68, 0.03);
+  border-color: rgba(239, 68, 68, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.05);
+}
+
+.obstacle-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.04);
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(239, 68, 68, 0.6);
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.obstacle-card:hover .obstacle-icon-box {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+}
+
+.obstacle-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(226, 220, 208, 0.85);
+  margin: 0 0 6px 0;
+}
+
+.obstacle-status {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(239, 68, 68, 0.5);
+}
+
+
+/* ==========================================================================
+   Slide 2: Velocity Visual Panel (Glowing Network Nodes)
+   ========================================================================== */
+
+.slide-velocity-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(241, 159, 17, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.velocity-visual-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(241, 159, 17, 0.01);
+  border: 1px dashed rgba(241, 159, 17, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Central Golden Core */
+.velocity-core {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(241, 159, 17, 0.08);
+  border: 2px solid #F19F11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F19F11;
+  box-shadow: 
+    0 0 30px rgba(241, 159, 17, 0.3),
+    inset 0 0 15px rgba(241, 159, 17, 0.2);
+  z-index: 10;
+  animation: corePulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes corePulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(241, 159, 17, 0.2);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 45px rgba(241, 159, 17, 0.45);
+  }
+}
+
+/* Satellite Nodes orbiting around core */
+.velocity-node {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(12, 10, 8, 0.9);
+  border: 1px solid rgba(241, 159, 17, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(226, 220, 208, 0.8);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.velocity-node:hover {
+  border-color: #F19F11;
+  color: #F19F11;
+  box-shadow: 0 0 15px rgba(241, 159, 17, 0.25);
+  transform: translateY(-2px);
+}
+
+.node-1 { top: 12%; left: 20%; }
+.node-2 { top: 15%; right: 15%; }
+.node-3 { bottom: 20%; left: 10%; }
+.node-4 { bottom: 15%; right: 22%; }
+
+/* GSAP animated light-trails */
+.light-trail-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.light-trail-line {
+  position: absolute;
+  height: 1px;
+  width: 150px;
+  background: linear-gradient(90deg, transparent, #F19F11, transparent);
+  opacity: 0.5;
+  filter: blur(1px);
+}
+
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .showcase-grid {
+    gap: 40px;
+    padding: 0 32px;
+  }
+
+  .showcase-slide-title {
+    font-size: 34px;
+  }
+
+  .showcase-slide-desc {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* On mobile, break from horizontal pin and scroll vertically */
+  .showcase-section {
+    height: auto;
+    overflow: visible;
+  }
+
+  .showcase-track {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .horizontal-slide {
+    width: 100vw;
+    height: auto;
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(241, 159, 17, 0.05);
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .showcase-content-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .friction-obstacle-grid {
+    max-width: 100%;
+  }
+
+  .velocity-visual-wrapper {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .horizontal-slide {
+    padding: 60px 0;
+  }
+
+  .showcase-grid {
+    padding: 0 20px;
+  }
+
+  .showcase-slide-title {
+    font-size: 26px;
+  }
+
+  .showcase-slide-desc {
+    font-size: 14px;
+  }
+
+  .obstacle-card {
+    padding: 16px;
+  }
+
+  .obstacle-icon-box {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 12px;
+  }
+}
