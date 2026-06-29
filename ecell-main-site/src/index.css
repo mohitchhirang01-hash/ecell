@@ -1,12 +1,12 @@
 :root {
   --text: #e2dcd0;
-  --text-h: #F19F11;
+  --text-h: #CD881B;
   --bg: #000000;
   --border: #2e291f;
   --code-bg: #16140f;
-  --accent: #F19F11;
-  --accent-bg: rgba(241, 159, 17, 0.1);
-  --accent-border: rgba(241, 159, 17, 0.4);
+  --accent: #CD881B;
+  --accent-bg: rgba(205, 136, 27, 0.1);
+  --accent-border: rgba(205, 136, 27, 0.4);
   --social-bg: rgba(30, 27, 20, 0.6);
   --shadow:
     rgba(0, 0, 0, 0.8) 0 10px 15px -3px, rgba(0, 0, 0, 0.5) 0 4px 6px -2px;
@@ -33,13 +33,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #e2dcd0;
-    --text-h: #F19F11;
+    --text-h: #CD881B;
     --bg: #000000;
     --border: #2e291f;
     --code-bg: #16140f;
-    --accent: #F19F11;
-    --accent-bg: rgba(241, 159, 17, 0.1);
-    --accent-border: rgba(241, 159, 17, 0.4);
+    --accent: #CD881B;
+    --accent-bg: rgba(205, 136, 27, 0.1);
+    --accent-border: rgba(205, 136, 27, 0.4);
     --social-bg: rgba(30, 27, 20, 0.6);
     --shadow:
       rgba(0, 0, 0, 0.8) 0 10px 15px -3px, rgba(0, 0, 0, 0.5) 0 4px 6px -2px;

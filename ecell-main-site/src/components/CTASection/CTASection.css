@@ -1,0 +1,176 @@
+/* ============================================
+   CTA Section
+   ============================================ */
+
+.cta-section {
+  position: relative;
+  width: 100%;
+  background-color: #060606;
+  padding: 140px 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-top: 1px solid rgba(205, 136, 27, 0.06);
+  border-bottom: 1px solid rgba(205, 136, 27, 0.06);
+}
+
+/* Grid background */
+.cta-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(205, 136, 27, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(205, 136, 27, 0.01) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+  z-index: 1;
+}
+
+/* Dot matrix pattern */
+.cta-dot-matrix {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(205, 136, 27, 0.02) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  z-index: 2;
+}
+
+/* Ambient glow blobs */
+.cta-glow-element {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cta-glow-left {
+  top: -20%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(205, 136, 27, 0.3) 0%, transparent 70%);
+}
+
+.cta-glow-right {
+  bottom: -20%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(205, 136, 27, 0.2) 0%, transparent 70%);
+}
+
+/* Content Container */
+.cta-container {
+  position: relative;
+  z-index: 5;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.cta-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin: 0 0 24px 0;
+}
+
+.cta-subtext {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(226, 220, 208, 0.6);
+  max-width: 600px;
+  margin: 0 auto 48px auto;
+}
+
+.cta-btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Pill Glowing button */
+.cta-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-decoration: none;
+  background: rgba(205, 136, 27, 0.05);
+  border: 1.5px solid #CD881B;
+  padding: 16px 48px;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 0 25px rgba(205, 136, 27, 0.15);
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #CD881B, #ffb33b);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+
+.cta-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 30px rgba(205, 136, 27, 0.4),
+    0 0 40px rgba(205, 136, 27, 0.1);
+  color: #000000;
+}
+
+.cta-button:hover::before {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 100px 0;
+  }
+
+  .cta-heading {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+
+  .cta-subtext {
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+
+  .cta-button {
+    padding: 14px 38px;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-heading {
+    font-size: 28px;
+  }
+}
