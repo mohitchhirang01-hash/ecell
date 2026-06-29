@@ -112,11 +112,21 @@ code {
 html {
   scrollbar-width: thin;
   scrollbar-color: #F19F11 transparent;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+}
+
+/* Always hide horizontal scrollbar */
+::-webkit-scrollbar:horizontal {
+  display: none !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -131,4 +141,13 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #BB8804;
+}
+
+/* Dynamic scrollbar hiding (when on hero section) */
+.hide-scrollbar {
+  scrollbar-width: none !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
 }

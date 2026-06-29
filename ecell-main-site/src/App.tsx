@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { Loader } from './components/Loader/Loader'
 import { Hero } from './components/hero/Hero'
@@ -15,6 +15,27 @@ const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 function App() {
   const [showContent, setShowContent] = useState(false)
   const [loaderDone, setLoaderDone] = useState(false)
+
+  useEffect(() => {
+    if (!showContent) return
+
+    const handleScroll = () => {
+      // Hide scrollbar on hero section (less than 90% of window height)
+      const threshold = window.innerHeight * 0.9
+      if (window.scrollY < threshold) {
+        document.documentElement.classList.add('hide-scrollbar')
+      } else {
+        document.documentElement.classList.remove('hide-scrollbar')
+      }
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.documentElement.classList.remove('hide-scrollbar')
+    }
+  }, [showContent])
 
   return (
     <>
