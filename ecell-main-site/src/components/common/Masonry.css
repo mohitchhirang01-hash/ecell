@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Masonry Grid Styling
+   ========================================================================== */
+
+.list-masonry {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+.item-wrapper-masonry {
+  position: absolute;
+  will-change: transform, width, height, opacity;
+  padding: 10px;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.item-img-masonry {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(241, 159, 17, 0.1);
+  box-shadow: 
+    0px 15px 40px -15px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.item-wrapper-masonry:hover .item-img-masonry {
+  border-color: rgba(241, 159, 17, 0.4);
+  box-shadow: 
+    0px 20px 50px -10px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(241, 159, 17, 0.08),
+    inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Photo Title Overlay on Hover */
+.item-title-masonry-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 24px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.item-wrapper-masonry:hover .item-title-masonry-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.item-title-masonry-overlay span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  border-left: 2px solid #F19F11;
+  padding-left: 8px;
+}

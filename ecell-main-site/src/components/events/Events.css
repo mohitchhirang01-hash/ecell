@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Events Section Styling
+   ========================================================================== */
+
+.events-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: transparent;
+  padding: clamp(40px, 6vh, 120px) 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Background Glowing Accents */
+.events-glow-1,
+.events-glow-2 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(140px);
+  z-index: 1;
+}
+
+.events-glow-1 {
+  top: 10%;
+  left: -10%;
+  width: 450px;
+  height: 450px;
+  background: rgba(241, 159, 17, 0.02);
+}
+
+.events-glow-2 {
+  bottom: 10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: rgba(241, 159, 17, 0.03);
+}
+
+.events-container {
+  position: relative;
+  z-index: 5;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+/* Section Header */
+.events-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto clamp(24px, 4vh, 60px) auto;
+}
+
+.events-eyebrow {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #F19F11;
+  margin-bottom: 24px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(241, 159, 17, 0.05);
+  border: 1px solid rgba(241, 159, 17, 0.2);
+}
+
+.events-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+}
+
+.events-title .text-gold {
+  color: #F19F11;
+}
+
+.events-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(226, 220, 208, 0.6);
+  margin: 0;
+}
+
+/* Events Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+}
+
+/* Event Card */
+.event-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(241, 159, 17, 0.08);
+  border-radius: 24px;
+  padding: clamp(24px, 3vh, 40px) clamp(20px, 2vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(340px, 42vh, 440px);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.event-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(241, 159, 17, 0.35);
+  background: rgba(241, 159, 17, 0.01);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(241, 159, 17, 0.04);
+}
+
+/* Decorative Gold Corners on Hover */
+.event-card::before,
+.event-card::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.event-card::before {
+  top: 16px;
+  left: 16px;
+  border-top: 2px solid #F19F11;
+  border-left: 2px solid #F19F11;
+}
+
+.event-card::after {
+  bottom: 16px;
+  right: 16px;
+  border-bottom: 2px solid #F19F11;
+  border-right: 2px solid #F19F11;
+}
+
+.event-card:hover::before,
+.event-card:hover::after {
+  opacity: 1;
+}
+
+/* Card Content Top */
+.event-card-top {
+  text-align: left;
+}
+
+.event-card-badge {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #F19F11;
+  margin-bottom: clamp(12px, 2vh, 24px);
+}
+
+.event-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(20px, 2.5vh, 24px);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 clamp(8px, 1.5vh, 16px) 0;
+  letter-spacing: -0.5px;
+}
+
+.event-card-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(226, 220, 208, 0.6);
+  margin: 0;
+}
+
+/* Card Content Bottom */
+.event-card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vh, 20px);
+  margin-top: clamp(20px, 3vh, 32px);
+  text-align: left;
+}
+
+.event-card-date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(226, 220, 208, 0.4);
+}
+
+.event-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: clamp(10px, 1.5vh, 14px) 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.event-card:hover .event-btn {
+  background: #F19F11;
+  border-color: #F19F11;
+  color: #0c0a08;
+  box-shadow: 0 0 15px rgba(241, 159, 17, 0.3);
+}
+
+
+/* ==========================================================================
+   Responsive Overrides
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .events-container {
+    padding: 0 32px;
+  }
+
+  .events-grid {
+    gap: 28px;
+  }
+
+  .event-card {
+    padding: 32px 24px;
+    min-height: 380px;
+  }
+
+  .event-card-title {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 768px) {
+  .events-section {
+    padding: 80px 0;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .event-card {
+    min-height: auto;
+  }
+
+  .events-header {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-section {
+    padding: 60px 0;
+  }
+
+  .events-container {
+    padding: 0 20px;
+  }
+
+  .event-card {
+    padding: 28px 20px;
+  }
+
+  .event-card-title {
+    font-size: 19px;
+  }
+}

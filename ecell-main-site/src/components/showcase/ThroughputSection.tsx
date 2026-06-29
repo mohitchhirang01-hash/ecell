@@ -6,7 +6,7 @@ import { ArrowRight, Award, Zap, Rocket, Share2 } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 interface ThroughputSectionProps {
-  containerAnimation?: gsap.core.Tween | null;
+  containerAnimation?: gsap.core.Animation | null;
 }
 
 export const ThroughputSection: React.FC<ThroughputSectionProps> = ({ containerAnimation }) => {

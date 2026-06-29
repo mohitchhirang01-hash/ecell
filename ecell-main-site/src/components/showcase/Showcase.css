@@ -8,12 +8,12 @@
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  background-color: #000000;
+  background-color: transparent;
 }
 
 .showcase-track {
   display: flex;
-  width: 200vw;
+  width: 400vw;
   height: 100%;
   will-change: transform;
 }
@@ -404,5 +404,287 @@
     width: 38px;
     height: 38px;
     margin-bottom: 12px;
+  }
+}
+
+
+/* ==========================================================================
+   Slide 2: Mentorship Visual Styles
+   ========================================================================== */
+
+.slide-mentorship-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(241, 159, 17, 0.03) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.mentorship-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mentorship-domain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.mentor-domain-card {
+  border-radius: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(241, 159, 17, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: all 0.4s ease;
+}
+
+.mentor-domain-card:hover {
+  background: rgba(241, 159, 17, 0.02);
+  border-color: rgba(241, 159, 17, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(241, 159, 17, 0.04);
+}
+
+.mentor-domain-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.mentor-domain-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(226, 220, 208, 0.9);
+  margin: 0 0 6px 0;
+}
+
+.mentor-domain-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(226, 220, 208, 0.55);
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   Slide 3: Capital Visual Styles
+   ========================================================================== */
+
+.slide-capital-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(241, 159, 17, 0.03) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.capital-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.capital-stage-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.capital-stage-card {
+  border-radius: 16px;
+  padding: 18px 24px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(241, 159, 17, 0.08);
+  transition: all 0.4s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.capital-stage-card:hover {
+  background: rgba(241, 159, 17, 0.02);
+  border-color: rgba(241, 159, 17, 0.3);
+  transform: translateX(6px);
+}
+
+.capital-stage-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.capital-stage-icon {
+  color: #F19F11;
+  display: flex;
+  align-items: center;
+}
+
+.capital-stage-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(226, 220, 208, 0.9);
+}
+
+.capital-stage-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(226, 220, 208, 0.6);
+  margin: 0;
+  max-width: 70%;
+}
+
+.capital-stage-value {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #F19F11;
+  text-shadow: 0 0 10px rgba(241, 159, 17, 0.2);
+}
+
+
+/* ==========================================================================
+   Responsive Overrides for Mentorship & Capital
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .mentorship-domain-grid {
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .capital-stage-deck {
+    max-width: 100%;
+  }
+
+  .capital-stage-card {
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mentorship-domain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mentor-domain-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .mentor-domain-icon-box {
+    margin: 0 auto 14px auto;
+  }
+
+  .capital-stage-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .capital-stage-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .capital-stage-header {
+    justify-content: center;
+  }
+
+  .capital-stage-desc {
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .capital-stage-value {
+    position: static;
+    transform: none;
+    margin-top: 8px;
+  }
+}
+
+
+/* ==========================================================================
+   Scroll Reveal Overlay Layouts
+   ========================================================================== */
+
+.slide-reveal-container {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.reveal-layer-behind {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.reveal-layer-top {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-color: #000000;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .slide-reveal-container {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+  }
+
+  .reveal-layer-behind,
+  .reveal-layer-top {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    z-index: auto !important;
+    transform: none !important;
+  }
+
+  .reveal-layer-behind {
+    border-top: 1px solid rgba(241, 159, 17, 0.05);
   }
 }
