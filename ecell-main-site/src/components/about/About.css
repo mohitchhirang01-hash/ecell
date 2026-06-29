@@ -1,377 +1,221 @@
-/* ============================================
-   About Section
-   ============================================ */
+/* ==========================================================================
+   About Us Section (E-Cell IITK Premium Dark/Gold Theme)
+   ========================================================================== */
 
-.about {
+.about-section {
   position: relative;
   width: 100%;
-  padding: 140px 0 120px;
+  padding: 120px 0;
   background-color: #000000;
   overflow: hidden;
-  text-align: left;
+  box-sizing: border-box;
 }
 
-/* ---- Background decorative glow ---- */
-.about-bg-glow {
+/* Background Glowing Accent */
+.about-glow {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.about-bg-glow::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  right: -15%;
-  width: 60%;
-  height: 60%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(241, 159, 17, 0.06) 0%,
-    transparent 70%
-  );
-  animation: aboutGlow1 14s ease-in-out infinite alternate;
-}
-
-.about-bg-glow::after {
-  content: '';
-  position: absolute;
-  bottom: -25%;
-  left: -10%;
+  top: 40%;
+  right: -10%;
   width: 50%;
   height: 50%;
   background: radial-gradient(
-    ellipse at center,
-    rgba(241, 159, 17, 0.04) 0%,
+    circle,
+    rgba(241, 159, 17, 0.05) 0%,
     transparent 70%
   );
-  animation: aboutGlow2 18s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes aboutGlow1 {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(-10%, 15%) scale(1.15);
-  }
-}
-
-@keyframes aboutGlow2 {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(8%, -10%) scale(1.1);
-  }
-}
-
-/* Subtle grid overlay */
-.about-grid-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(241, 159, 17, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(241, 159, 17, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
-}
-
-
-/* ---- Container ---- */
 .about-container {
   position: relative;
-  z-index: 1;
-  max-width: 1100px;
+  z-index: 2;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 48px;
-  display: flex;
-  gap: 60px;
-  align-items: stretch;
-  text-align: left;
-}
-
-
-/* ---- Accent column (decorative vertical line) ---- */
-.about-accent-col {
-  flex-shrink: 0;
-  padding-top: 8px;
-}
-
-.about-accent-line {
-  width: 3px;
-  height: 240px;
-  border-radius: 2px;
-  background: linear-gradient(
-    to bottom,
-    #F19F11 0%,
-    rgba(241, 159, 17, 0.2) 70%,
-    transparent 100%
-  );
-  transform-origin: top center;
-}
-
-
-/* ---- Content column ---- */
-.about-content {
-  flex: 1;
-  min-width: 0;
-  text-align: left;
-}
-
-/* Section label / eyebrow */
-.about-label {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-  justify-content: flex-start;
 }
 
-.about-label-line {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: #F19F11;
+/* Text Column */
+.about-text-col {
+  text-align: left;
+  min-width: 0;
+  width: 100%;
 }
 
-.about-label-text {
+/* Eyebrow Label */
+.about-eyebrow {
+  display: inline-block;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: #F19F11;
+  margin-bottom: 24px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(241, 159, 17, 0.05);
+  border: 1px solid rgba(241, 159, 17, 0.2);
 }
 
 /* Heading */
-.about-heading {
+.about-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 48px;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -1.5px;
+  line-height: 1.2;
+  letter-spacing: -1px;
   color: #ffffff;
-  margin: 0 0 32px;
+  margin: 0 0 28px 0;
 }
 
-.about-heading-accent {
-  background: linear-gradient(135deg, #F19F11 0%, #ffc15e 50%, #F19F11 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: aboutShimmer 5s ease-in-out infinite;
+.about-title .text-gold {
+  color: #F19F11;
 }
 
-@keyframes aboutShimmer {
-  0%, 100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
-
-/* Description */
-.about-description {
+/* Paragraph Text */
+.about-desc {
   font-family: 'Montserrat', sans-serif;
   font-size: 17px;
-  font-weight: 400;
   line-height: 1.85;
-  color: rgba(226, 220, 208, 0.75);
-  margin: 0 0 56px;
-  max-width: 640px;
-}
-
-
-/* ---- Highlight cards ---- */
-.about-highlights {
-  display: flex;
-  gap: 24px;
-}
-
-.about-highlight {
-  flex: 1;
-  padding: 28px 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(241, 159, 17, 0.1);
-  background: rgba(241, 159, 17, 0.03);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  cursor: default;
-}
-
-.about-highlight:hover {
-  border-color: rgba(241, 159, 17, 0.3);
-  background: rgba(241, 159, 17, 0.06);
-  transform: translateY(-6px);
-  box-shadow:
-    0 12px 40px rgba(241, 159, 17, 0.1),
-    0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.about-highlight-icon {
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  background: rgba(241, 159, 17, 0.08);
-  border: 1px solid rgba(241, 159, 17, 0.15);
-  color: #F19F11;
-  margin-bottom: 20px;
-  transition: all 0.4s ease;
-}
-
-.about-highlight:hover .about-highlight-icon {
-  background: rgba(241, 159, 17, 0.14);
-  border-color: rgba(241, 159, 17, 0.35);
-  box-shadow: 0 0 20px rgba(241, 159, 17, 0.15);
-}
-
-.about-highlight-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  margin: 0 0 10px;
-}
-
-.about-highlight-desc {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: rgba(226, 220, 208, 0.55);
+  color: rgba(226, 220, 208, 0.8);
   margin: 0;
 }
 
+/* Image Column */
+.about-image-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 
-/* ============================================
-   Responsive
-   ============================================ */
+.about-image-wrapper {
+  position: relative;
+  border-radius: 24px;
+  padding: 10px;
+  background: rgba(241, 159, 17, 0.03);
+  border: 1px solid rgba(241, 159, 17, 0.15);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(241, 159, 17, 0.03);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+/* Subtle Hover Shift */
+.about-image-wrapper:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(241, 159, 17, 0.35);
+  box-shadow: 
+    0 30px 50px rgba(0, 0, 0, 0.6),
+    0 0 45px rgba(241, 159, 17, 0.08);
+}
+
+.about-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+}
+
+/* Decorative Gold Corner Borders */
+.about-image-wrapper::before,
+.about-image-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.about-image-wrapper::before {
+  top: 14px;
+  left: 14px;
+  border-top: 2px solid #F19F11;
+  border-left: 2px solid #F19F11;
+}
+
+.about-image-wrapper::after {
+  bottom: 14px;
+  right: 14px;
+  border-bottom: 2px solid #F19F11;
+  border-right: 2px solid #F19F11;
+}
+
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
 @media (max-width: 1024px) {
-  .about {
-    padding: 100px 0 80px;
+  .about-section {
+    padding: 90px 0;
   }
 
   .about-container {
+    gap: 50px;
     padding: 0 32px;
-    gap: 40px;
   }
 
-  .about-heading {
-    font-size: 38px;
-    letter-spacing: -1px;
-  }
-
-  .about-description {
+  .about-desc {
     font-size: 16px;
-    margin-bottom: 44px;
-  }
-
-  .about-accent-line {
-    height: 180px;
-  }
-
-  /* Make highlight cards scrollable horizontally on tablet/mobile */
-  .about-highlights {
-    overflow-x: auto;
-    padding: 8px 4px 20px;
-    margin: 0 -4px;
-    gap: 20px;
-    scrollbar-width: none; /* Hide default scrollbar for Firefox */
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .about-highlights::-webkit-scrollbar {
-    display: none; /* Hide default scrollbar for Chrome/Safari */
-  }
-
-  .about-highlight {
-    flex: 0 0 280px; /* Prevent shrinking and lock width */
-    scroll-snap-align: start;
   }
 }
 
 @media (max-width: 768px) {
-  .about {
-    padding: 80px 0 60px;
+  .about-section {
+    padding: 80px 0;
   }
 
   .about-container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 50px;
     padding: 0 24px;
-    gap: 0;
+    text-align: center;
   }
 
-  .about-accent-col {
-    display: none;
+  .about-text-col {
+    text-align: center;
+    order: 1;
   }
 
-  .about-heading {
-    font-size: 32px;
-    margin-bottom: 24px;
+  .about-image-col {
+    order: 2;
   }
 
-  .about-description {
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 40px;
-  }
-
-  /* Maintain horizontal swipe on mobile, slightly smaller card width */
-  .about-highlights {
-    overflow-x: auto;
-    flex-direction: row;
-    gap: 16px;
-    padding: 8px 4px 20px;
-    margin: 0 -4px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .about-highlights::-webkit-scrollbar {
-    display: none;
-  }
-
-  .about-highlight {
-    flex: 0 0 260px;
-    padding: 24px 20px;
-    scroll-snap-align: start;
+  .about-img {
+    max-width: 360px;
   }
 }
 
 @media (max-width: 480px) {
-  .about {
-    padding: 64px 0 48px;
+  .about-section {
+    padding: 60px 0;
   }
 
   .about-container {
     padding: 0 20px;
+    gap: 40px;
   }
 
-  .about-heading {
+  .about-title {
     font-size: 26px;
-    letter-spacing: -0.5px;
   }
 
-  .about-description {
+  .about-desc {
     font-size: 14px;
   }
 
-  .about-highlight-title {
-    font-size: 15px;
-  }
-
-  .about-highlight-desc {
-    font-size: 12px;
+  .about-img {
+    max-width: 100%;
   }
 }
