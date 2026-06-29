@@ -120,25 +120,28 @@ export const Events: React.FC = () => {
           </div>
         </div>
 
-        {/* Event Slides */}
-        {eventsList.map((event) => (
-          <div key={event.id} className="events-slide">
-            <div 
-              className="event-card" 
-              style={{ '--event-accent': event.accent } as React.CSSProperties}
-            >
-              <div className="event-header">
-                <span className="event-number">{event.num}</span>
-                <div className="event-icon-wrapper">
-                  {event.icon}
+        {/* Matrix Grid Slide */}
+        <div className="events-slide events-grid-slide">
+          <div className="events-grid-matrix">
+            {eventsList.map((event) => (
+              <div 
+                key={event.id} 
+                className="event-card" 
+                style={{ '--event-accent': event.accent } as React.CSSProperties}
+              >
+                <div className="event-header">
+                  <span className="event-number">{event.num}</span>
+                  <div className="event-icon-wrapper">
+                    {event.icon}
+                  </div>
                 </div>
+                <h3 className="event-title">{event.title}</h3>
+                <p className="event-desc">{event.description}</p>
+                <div className="card-glow" />
               </div>
-              <h3 className="event-title">{event.title}</h3>
-              <p className="event-desc">{event.description}</p>
-              <div className="card-glow" />
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );

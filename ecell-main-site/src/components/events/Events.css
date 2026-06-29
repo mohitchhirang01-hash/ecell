@@ -112,15 +112,36 @@
   50% { transform: translateX(4px); }
 }
 
+/* Event Grid Matrix Panel Styling */
+.events-grid-slide {
+  width: 140vw; /* Wide panel to allow horizontal scroll motion */
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+.events-grid-matrix {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  height: 80%;
+  max-height: 650px;
+  box-sizing: border-box;
+}
+
 /* Event Card Slide Styling */
 .event-card {
   position: relative;
   width: 100%;
-  max-width: 650px;
-  height: 65%;
-  max-height: 500px;
-  border-radius: 24px;
-  padding: 48px;
+  height: 100%;
+  border-radius: 20px;
+  padding: 24px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -128,28 +149,28 @@
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
 }
 
 .event-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
   border-color: rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .event-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
 
 .event-number {
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   color: var(--event-accent);
@@ -157,9 +178,9 @@
 }
 
 .event-icon-wrapper {
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
@@ -173,16 +194,16 @@
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--event-accent);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
 .event-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  font-size: 18px;
   font-weight: 800;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.2px;
   color: #ffffff;
-  margin: 0 0 18px 0;
+  margin: 0 0 10px 0;
   transition: color 0.3s ease;
 }
 
@@ -192,9 +213,9 @@
 
 .event-desc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  color: rgba(226, 220, 208, 0.7);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(226, 220, 208, 0.65);
   margin: 0;
 }
 
@@ -218,6 +239,7 @@
 .event-card:hover .card-glow {
   opacity: 0.08;
 }
+
 
 /* ==========================================================================
    Responsive Breakpoints
