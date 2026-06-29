@@ -140,10 +140,6 @@ export const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* Orbit Rings (Antigravity/Quantum theme) */}
-      <div className="hero-ring hero-ring-inner" />
-      <div className="hero-ring hero-ring-outer" />
-
       {/* Transparent Building Canvas (Chroma-keyed on the fly) */}
       <canvas ref={canvasRef} className="hero-building-canvas" />
 
