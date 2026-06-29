@@ -59,21 +59,7 @@ export const Echo: React.FC = () => {
         {/* Left Column: Premium Digital Cover Mockup */}
         <div ref={mockupRef} className="echo-visual-column">
           <div className="echo-magazine-cover">
-            <div className="cover-header">
-              <span className="cover-volume">VOL. 01 / ISSUE 01</span>
-              <Sparkles size={16} className="cover-sparkle" />
-            </div>
-            <div className="cover-title-group">
-              <h4 className="cover-super-title">E-CELL IITK PRESENT</h4>
-              <h3 className="cover-title">ECHO</h3>
-              <p className="cover-sub-title">EVOKE • CONNECT • HIGHLIGHT • OUTLOOK</p>
-            </div>
-            <div className="cover-footer">
-              <div className="cover-highlight-box">
-                <span className="box-badge">IN THIS ISSUE</span>
-                <p>YC Summaries • Visionary Interviews • Puzzles</p>
-              </div>
-            </div>
+            <img src="/images/echo.png" alt="ECHO Magazine Cover" className="cover-img" />
             <div className="cover-sheen" />
           </div>
           <div className="visual-shadow" />
