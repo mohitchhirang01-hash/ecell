@@ -91,12 +91,29 @@
    Members Layout Grid
    ========================================================================== */
 
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columns for a clean 5x2 row alignment */
-  gap: 32px 24px;
+.team-rows-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.team-row {
+  display: grid;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.team-row-2col {
+  grid-template-columns: repeat(2, 220px);
+  justify-content: center;
+}
+
+.team-row-3col {
+  grid-template-columns: repeat(3, 220px);
+  justify-content: center;
 }
 
 /* Individual Card */
@@ -247,9 +264,12 @@
     font-size: 44px;
   }
 
-  .team-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
-    gap: 28px 20px;
+  .team-row-2col {
+    grid-template-columns: repeat(2, 200px);
+  }
+
+  .team-row-3col {
+    grid-template-columns: repeat(3, 200px);
   }
 }
 
@@ -258,8 +278,8 @@
     padding: 60px 20px;
   }
 
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile screen portrait */
+  .team-row-2col, .team-row-3col {
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 24px 16px;
   }
 
@@ -273,8 +293,8 @@
 }
 
 @media (max-width: 480px) {
-  .team-grid {
-    grid-template-columns: 1fr; /* Single column stack on narrow devices */
+  .team-row-2col, .team-row-3col {
+    grid-template-columns: 1fr !important;
     gap: 32px;
   }
 

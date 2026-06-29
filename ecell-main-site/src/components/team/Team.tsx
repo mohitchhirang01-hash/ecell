@@ -131,13 +131,77 @@ export const Team: React.FC = () => {
         opacity: 0,
         y: 40,
         duration: 0.7,
-        stagger: 0.1,
+        stagger: 0.08,
         ease: 'power3.out',
       });
     }, section);
 
     return () => ctx.revert();
   }, []);
+
+  const renderMemberCard = (member: TeamMember) => (
+    <div key={member.id} className="team-card">
+      {/* Photo Box Placeholder (Empty/Stylized) */}
+      <div className="team-photo-placeholder">
+        {member.image ? (
+          <img src={member.image} alt={member.name} className="team-member-img" />
+        ) : (
+          <div className="avatar-silhouette">
+            <User size={48} className="user-icon" />
+          </div>
+        )}
+        
+        {/* Social hover options */}
+        <div className="team-social-overlay">
+          <a 
+            href={member.linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-btn linkedin-btn"
+            aria-label="LinkedIn Profile"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="18" 
+              height="18" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect width="4" height="12" x="2" y="9"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a 
+            href={member.email} 
+            className="social-btn email-btn"
+            aria-label="Send Email"
+          >
+            <Mail size={18} />
+          </a>
+        </div>
+      </div>
+
+      {/* Info Area */}
+      <div className="team-info">
+        <h3 className="team-name">{member.name}</h3>
+        <span className="team-role">{member.role}</span>
+      </div>
+    </div>
+  );
+
+  const overallCoordinators = teamList.filter(m => m.role === 'Overall Coordinator');
+  const headEvents = teamList.filter(m => m.role === 'Head Events');
+  const otherHeads = teamList.filter(m => 
+    m.role === 'Head Startup Development' || 
+    m.role === 'Head Marketing' || 
+    m.role === 'Head Media & Publicity'
+  );
+  const headDesign = teamList.filter(m => m.role === 'Head Design');
 
   return (
     <section ref={sectionRef} className="team-section" id="team">
@@ -158,61 +222,26 @@ export const Team: React.FC = () => {
         </div>
 
         {/* Members Layout Grid */}
-        <div ref={gridRef} className="team-grid">
-          {teamList.map((member) => (
-            <div key={member.id} className="team-card">
-              {/* Photo Box Placeholder (Empty/Stylized) */}
-              <div className="team-photo-placeholder">
-                {member.image ? (
-                  <img src={member.image} alt={member.name} className="team-member-img" />
-                ) : (
-                  <div className="avatar-silhouette">
-                    <User size={48} className="user-icon" />
-                  </div>
-                )}
-                
-                {/* Social hover options */}
-                <div className="team-social-overlay">
-                  <a 
-                    href={member.linkedin} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="social-btn linkedin-btn"
-                    aria-label="LinkedIn Profile"
-                  >
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      width="18" 
-                      height="18" 
-                      viewBox="0 0 24 24" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                      <rect width="4" height="12" x="2" y="9"/>
-                      <circle cx="4" cy="4" r="2"/>
-                    </svg>
-                  </a>
-                  <a 
-                    href={member.email} 
-                    className="social-btn email-btn"
-                    aria-label="Send Email"
-                  >
-                    <Mail size={18} />
-                  </a>
-                </div>
-              </div>
+        <div ref={gridRef} className="team-rows-container">
+          {/* Row 1: Overall Coordinator */}
+          <div className="team-row team-row-2col">
+            {overallCoordinators.map(renderMemberCard)}
+          </div>
 
-              {/* Info Area */}
-              <div className="team-info">
-                <h3 className="team-name">{member.name}</h3>
-                <span className="team-role">{member.role}</span>
-              </div>
-            </div>
-          ))}
+          {/* Row 2: Head Events */}
+          <div className="team-row team-row-3col">
+            {headEvents.map(renderMemberCard)}
+          </div>
+
+          {/* Row 3: Startup, Marketing, Media & Publicity */}
+          <div className="team-row team-row-3col">
+            {otherHeads.map(renderMemberCard)}
+          </div>
+
+          {/* Row 4: Head Design */}
+          <div className="team-row team-row-2col">
+            {headDesign.map(renderMemberCard)}
+          </div>
         </div>
       </div>
     </section>
