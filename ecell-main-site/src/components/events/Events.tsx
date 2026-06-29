@@ -122,6 +122,7 @@ export const Events: React.FC = () => {
 
         {/* Matrix Grid Slide */}
         <div className="events-slide events-grid-slide">
+          <div className="events-bg-watermark" />
           <div className="events-grid-matrix">
             {eventsList.map((event) => (
               <div 

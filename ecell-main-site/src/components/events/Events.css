@@ -114,6 +114,7 @@
 
 /* Event Grid Matrix Panel Styling */
 .events-grid-slide {
+  position: relative; /* Contain absolute watermark */
   width: 160vw; /* Wide panel to allow horizontal scroll motion */
   height: 100%;
   flex-shrink: 0;
@@ -122,6 +123,24 @@
   justify-content: center;
   padding: 0 80px;
   box-sizing: border-box;
+}
+
+/* Very grey-based laptop and pen side by side watermark */
+.events-bg-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 75%;
+  background-image: url('/images/laptop_pen_bg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.025; /* Extremely faint watermark, zero visual text obstruction */
+  mix-blend-mode: luminosity; /* Forces greyscale grey-based overlay */
+  pointer-events: none;
+  z-index: 1;
 }
 
 .events-grid-matrix {
@@ -133,6 +152,8 @@
   height: 90%;
   max-height: 780px;
   box-sizing: border-box;
+  position: relative;
+  z-index: 2; /* Sits cleanly on top of watermark */
 }
 
 /* Bento Grid Spans */
