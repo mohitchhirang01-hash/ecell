@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Gallery Section Styles (E-Cell IITK Bento Grid Layout)
+   ========================================================================== */
+
+.gallery-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 48px;
+  background-color: #201E15; /* Section background color matching prompt request */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Background glows */
+.gallery-bg-glow {
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(241, 159, 17, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.gallery-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(241, 159, 17, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 159, 17, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  pointer-events: none;
+}
+
+.gallery-container {
+  position: relative;
+  z-index: 5;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title block styling */
+.gallery-title-box {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.gallery-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #F19F11;
+  background: rgba(241, 159, 17, 0.05);
+  border: 1px solid rgba(241, 159, 17, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.gallery-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+}
+
+.gallery-subtext {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: rgba(226, 220, 208, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Bento Grid Layout
+   ========================================================================== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Bento spans */
+.gallery-card-esummit {
+  grid-column: span 2;
+}
+
+.gallery-card-hackathon {
+  grid-column: span 1;
+}
+
+.gallery-card-panel {
+  grid-column: span 1;
+}
+
+.gallery-card-networking {
+  grid-column: span 1;
+}
+
+.gallery-card-pitching {
+  grid-column: span 1;
+}
+
+.gallery-card-incubation {
+  grid-column: span 3;
+}
+
+/* Card Styling */
+.gallery-card-wrapper {
+  height: 320px;
+}
+
+/* Incubation card (span 3) gets a slightly shorter height for balance */
+.gallery-card-incubation {
+  height: 240px;
+}
+
+.gallery-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.gallery-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(241, 159, 17, 0.25);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(241, 159, 17, 0.1);
+}
+
+/* Image Visual Box */
+.gallery-image-box {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-card:hover .gallery-img {
+  transform: scale(1.08);
+}
+
+.gallery-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .gallery-img-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(241, 159, 17, 0.05) 100%
+  );
+}
+
+/* Gradient / Icon Box */
+.gallery-gradient-box {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.gallery-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F19F11;
+  transition: all 0.4s ease;
+}
+
+.gallery-card-icon {
+  transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-icon-container {
+  background: rgba(241, 159, 17, 0.1);
+  border-color: #F19F11;
+  box-shadow: 0 0 25px rgba(241, 159, 17, 0.15);
+  transform: scale(1.05);
+}
+
+.gallery-card:hover .gallery-card-icon {
+  transform: rotate(10deg);
+}
+
+/* Card Details Overlay */
+.gallery-card-info {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  right: 28px;
+  z-index: 10;
+  text-align: left;
+}
+
+.gallery-card-category {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #F19F11;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.gallery-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Special styling for Incubation card title inside full-span row */
+.gallery-card-incubation .gallery-card-title {
+  font-size: 24px;
+}
+
+/* Card Corner border effects */
+.gallery-card-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transition: border-color 0.4s ease;
+  z-index: 15;
+}
+
+.gallery-card:hover .gallery-card-border {
+  border-color: rgba(241, 159, 17, 0.2);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .gallery-section {
+    padding: 80px 32px;
+  }
+
+  .gallery-heading {
+    font-size: 44px;
+  }
+
+  .gallery-grid {
+    gap: 20px;
+  }
+
+  .gallery-card-wrapper {
+    height: 280px;
+  }
+
+  .gallery-card-incubation {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-section {
+    padding: 60px 20px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Reset bento column spanning on mobile */
+  .gallery-card-esummit,
+  .gallery-card-hackathon,
+  .gallery-card-panel,
+  .gallery-card-networking,
+  .gallery-card-pitching,
+  .gallery-card-incubation {
+    grid-column: span 1;
+    height: 260px;
+  }
+
+  .gallery-card-title {
+    font-size: 18px;
+  }
+
+  .gallery-card-incubation .gallery-card-title {
+    font-size: 18px;
+  }
+}

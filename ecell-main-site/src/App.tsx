@@ -5,6 +5,7 @@ import { Hero } from './components/hero/Hero'
 import { About } from './components/about/About'
 import { Events } from './components/events/Events'
 import { Echo } from './components/echo/Echo'
+import { Gallery } from './components/gallery/Gallery'
 import { Navbar } from './components/Navbar/Navbar'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
@@ -31,12 +32,14 @@ function App() {
         <About />
         <Events />
         <Echo />
+        <Gallery />
       </div>
     </>
   )
 }
 
 export default App
+
 
 
 
