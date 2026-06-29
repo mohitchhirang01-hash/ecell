@@ -7,6 +7,7 @@ import { Events } from './components/events/Events'
 import { Echo } from './components/echo/Echo'
 import { Gallery } from './components/gallery/Gallery'
 import { Team } from './components/team/Team'
+import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/Navbar/Navbar'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
@@ -34,6 +35,7 @@ function App() {
         <Echo />
         <Gallery />
         <Team />
+        <Footer />
       </div>
     </>
   )

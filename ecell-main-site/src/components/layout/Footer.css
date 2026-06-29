@@ -1,0 +1,301 @@
+/* ==========================================================================
+   Footer Section Styles
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  width: 100%;
+  padding: 80px 48px 32px 48px;
+  background-color: #0d0e0f; /* Grounded deep black background */
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Background ambient glows */
+.footer-glow-1 {
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 40%;
+  height: 60%;
+  background: radial-gradient(
+    circle at center,
+    rgba(241, 159, 17, 0.02) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.footer-glow-2 {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 40%;
+  height: 60%;
+  background: radial-gradient(
+    circle at center,
+    rgba(241, 159, 17, 0.01) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 5;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 60px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Column 1: Brand Logo & Motto
+   ========================================================================== */
+
+.brand-col {
+  justify-content: flex-start;
+}
+
+.footer-logo {
+  margin-bottom: 24px;
+}
+
+.footer-brand-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.footer-brand-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #F19F11;
+  display: block;
+  margin-top: 2px;
+}
+
+.footer-motto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(226, 220, 208, 0.5);
+  margin-top: 8px;
+}
+
+.motto-dot {
+  color: #F19F11;
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   Column 2: Social Media Link Grid
+   ========================================================================== */
+
+.footer-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #F19F11;
+  margin: 0 0 28px 0;
+  text-transform: uppercase;
+}
+
+.social-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(226, 220, 208, 0.6);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-social-link svg {
+  color: rgba(226, 220, 208, 0.4);
+  transition: all 0.3s ease;
+}
+
+.footer-social-link:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.footer-social-link:hover svg {
+  color: #F19F11;
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Column 3: Get Notified Subscription Form
+   ========================================================================== */
+
+.notify-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(226, 220, 208, 0.6);
+  margin: 0 0 24px 0;
+}
+
+.notify-form {
+  width: 100%;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.notify-input {
+  width: 100%;
+  padding: 16px 64px 16px 20px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  color: #ffffff;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.notify-input::placeholder {
+  color: rgba(226, 220, 208, 0.3);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.notify-input:focus {
+  border-color: rgba(241, 159, 17, 0.4);
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 
+    0 0 20px rgba(241, 159, 17, 0.05),
+    0 0 0 3px rgba(241, 159, 17, 0.03);
+}
+
+.notify-submit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 48px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #F19F11, #ffb648);
+  border: none;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.notify-submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(241, 159, 17, 0.3);
+}
+
+.notify-submit:active {
+  transform: scale(0.95);
+}
+
+.submitted-check {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.notification-toast {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: #22c55e;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Footer Bottom bar
+   ========================================================================== */
+
+.footer-bottom {
+  position: relative;
+  z-index: 5;
+  max-width: 1200px;
+  margin: 64px auto 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  text-align: center;
+}
+
+.copyright-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  color: rgba(226, 220, 208, 0.35);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .site-footer {
+    padding: 60px 32px 32px 32px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .footer-heading {
+    margin-bottom: 20px;
+  }
+
+  .social-links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-bottom {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .social-links-grid {
+    grid-template-columns: 1fr;
+  }
+}
