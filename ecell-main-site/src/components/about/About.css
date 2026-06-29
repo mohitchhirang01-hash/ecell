@@ -1,0 +1,377 @@
+/* ============================================
+   About Section
+   ============================================ */
+
+.about {
+  position: relative;
+  width: 100%;
+  padding: 140px 0 120px;
+  background-color: #000000;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* ---- Background decorative glow ---- */
+.about-bg-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-bg-glow::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -15%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(241, 159, 17, 0.06) 0%,
+    transparent 70%
+  );
+  animation: aboutGlow1 14s ease-in-out infinite alternate;
+}
+
+.about-bg-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -25%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(241, 159, 17, 0.04) 0%,
+    transparent 70%
+  );
+  animation: aboutGlow2 18s ease-in-out infinite alternate;
+}
+
+@keyframes aboutGlow1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-10%, 15%) scale(1.15);
+  }
+}
+
+@keyframes aboutGlow2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(8%, -10%) scale(1.1);
+  }
+}
+
+/* Subtle grid overlay */
+.about-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(241, 159, 17, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 159, 17, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 50%, black 20%, transparent 70%);
+}
+
+
+/* ---- Container ---- */
+.about-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  gap: 60px;
+  align-items: stretch;
+  text-align: left;
+}
+
+
+/* ---- Accent column (decorative vertical line) ---- */
+.about-accent-col {
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+.about-accent-line {
+  width: 3px;
+  height: 240px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    #F19F11 0%,
+    rgba(241, 159, 17, 0.2) 70%,
+    transparent 100%
+  );
+  transform-origin: top center;
+}
+
+
+/* ---- Content column ---- */
+.about-content {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+/* Section label / eyebrow */
+.about-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  justify-content: flex-start;
+}
+
+.about-label-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #F19F11;
+}
+
+.about-label-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #F19F11;
+}
+
+/* Heading */
+.about-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  color: #ffffff;
+  margin: 0 0 32px;
+}
+
+.about-heading-accent {
+  background: linear-gradient(135deg, #F19F11 0%, #ffc15e 50%, #F19F11 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aboutShimmer 5s ease-in-out infinite;
+}
+
+@keyframes aboutShimmer {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+/* Description */
+.about-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: rgba(226, 220, 208, 0.75);
+  margin: 0 0 56px;
+  max-width: 640px;
+}
+
+
+/* ---- Highlight cards ---- */
+.about-highlights {
+  display: flex;
+  gap: 24px;
+}
+
+.about-highlight {
+  flex: 1;
+  padding: 28px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(241, 159, 17, 0.1);
+  background: rgba(241, 159, 17, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: default;
+}
+
+.about-highlight:hover {
+  border-color: rgba(241, 159, 17, 0.3);
+  background: rgba(241, 159, 17, 0.06);
+  transform: translateY(-6px);
+  box-shadow:
+    0 12px 40px rgba(241, 159, 17, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.about-highlight-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(241, 159, 17, 0.08);
+  border: 1px solid rgba(241, 159, 17, 0.15);
+  color: #F19F11;
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+}
+
+.about-highlight:hover .about-highlight-icon {
+  background: rgba(241, 159, 17, 0.14);
+  border-color: rgba(241, 159, 17, 0.35);
+  box-shadow: 0 0 20px rgba(241, 159, 17, 0.15);
+}
+
+.about-highlight-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.about-highlight-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(226, 220, 208, 0.55);
+  margin: 0;
+}
+
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+  .about {
+    padding: 100px 0 80px;
+  }
+
+  .about-container {
+    padding: 0 32px;
+    gap: 40px;
+  }
+
+  .about-heading {
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+
+  .about-description {
+    font-size: 16px;
+    margin-bottom: 44px;
+  }
+
+  .about-accent-line {
+    height: 180px;
+  }
+
+  /* Make highlight cards scrollable horizontally on tablet/mobile */
+  .about-highlights {
+    overflow-x: auto;
+    padding: 8px 4px 20px;
+    margin: 0 -4px;
+    gap: 20px;
+    scrollbar-width: none; /* Hide default scrollbar for Firefox */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-highlights::-webkit-scrollbar {
+    display: none; /* Hide default scrollbar for Chrome/Safari */
+  }
+
+  .about-highlight {
+    flex: 0 0 280px; /* Prevent shrinking and lock width */
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 80px 0 60px;
+  }
+
+  .about-container {
+    flex-direction: column;
+    padding: 0 24px;
+    gap: 0;
+  }
+
+  .about-accent-col {
+    display: none;
+  }
+
+  .about-heading {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  .about-description {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  /* Maintain horizontal swipe on mobile, slightly smaller card width */
+  .about-highlights {
+    overflow-x: auto;
+    flex-direction: row;
+    gap: 16px;
+    padding: 8px 4px 20px;
+    margin: 0 -4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-highlights::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about-highlight {
+    flex: 0 0 260px;
+    padding: 24px 20px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 64px 0 48px;
+  }
+
+  .about-container {
+    padding: 0 20px;
+  }
+
+  .about-heading {
+    font-size: 26px;
+    letter-spacing: -0.5px;
+  }
+
+  .about-description {
+    font-size: 14px;
+  }
+
+  .about-highlight-title {
+    font-size: 15px;
+  }
+
+  .about-highlight-desc {
+    font-size: 12px;
+  }
+}
