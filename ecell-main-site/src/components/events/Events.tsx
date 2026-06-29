@@ -104,6 +104,7 @@ export const Events: React.FC = () => {
       <div ref={trackRef} className="events-track">
         {/* Intro Slide */}
         <div className="events-slide events-intro-slide">
+          <div className="events-bg-watermark events-bg-watermark-left" />
           <div className="events-intro-card">
             <span className="events-eyebrow">Initiatives</span>
             <h2 className="events-main-title">
@@ -122,7 +123,7 @@ export const Events: React.FC = () => {
 
         {/* Matrix Grid Slide */}
         <div className="events-slide events-grid-slide">
-          <div className="events-bg-watermark" />
+          <div className="events-bg-watermark events-bg-watermark-right" />
           <div className="events-grid-matrix">
             {eventsList.map((event) => (
               <div 

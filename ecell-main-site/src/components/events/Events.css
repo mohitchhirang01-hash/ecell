@@ -27,10 +27,12 @@
   justify-content: center;
   padding: 0 40px;
   box-sizing: border-box;
+  overflow: hidden; /* Prevent watermark overflow stretching track */
 }
 
 /* Intro Slide Specific Styling */
 .events-intro-slide {
+  position: relative; /* Contain absolute watermark */
   background: radial-gradient(
     circle at 30% 50%,
     rgba(241, 159, 17, 0.04) 0%,
@@ -41,6 +43,8 @@
 .events-intro-card {
   max-width: 800px;
   text-align: left;
+  position: relative;
+  z-index: 2; /* Sit cleanly on top of watermark */
 }
 
 .events-eyebrow {
@@ -123,24 +127,35 @@
   justify-content: center;
   padding: 0 80px;
   box-sizing: border-box;
+  overflow: hidden; /* Prevent watermark overflow stretching track */
 }
 
 /* Very grey-based laptop and pen side by side watermark */
 .events-bg-watermark {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  height: 75%;
+  width: 300vw; /* Keep watermark size relative to viewport, not parent slide */
+  height: 300vh;
   background-image: url('/images/laptop_pen_bg.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.025; /* Extremely faint watermark, zero visual text obstruction */
+  opacity: 0.22; /* Clearly visible, does not obstruct text readability */
   mix-blend-mode: luminosity; /* Forces greyscale grey-based overlay */
   pointer-events: none;
   z-index: 1;
+}
+
+.events-bg-watermark-left {
+  left: -75vw; /* Push exactly 25% (1/4th) of the 300vw wide image off-screen to the left */
+  transform: translateY(-50%);
+  background-position: left center; /* Align image left inside container */
+}
+
+.events-bg-watermark-right {
+  right: -75vw; /* Push exactly 25% (1/4th) of the 300vw wide image off-screen to the right */
+  left: auto;
+  transform: translateY(-50%) rotate(180deg); /* Mirror/rotate 180 degrees */
+  background-position: left center; /* Align image left inside container so keys are off-screen right */
 }
 
 .events-grid-matrix {
