@@ -12,6 +12,7 @@ interface TeamMember {
   role: string;
   linkedin: string;
   email: string;
+  image?: string;
 }
 
 const teamList: TeamMember[] = [
@@ -28,6 +29,7 @@ const teamList: TeamMember[] = [
     role: 'Overall Coordinator',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:hiranis@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/hirani.jpg',
   },
   {
     id: 'gunjan',
@@ -42,6 +44,7 @@ const teamList: TeamMember[] = [
     role: 'Head Events',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:poojitha@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/image.png',
   },
   {
     id: 'mohit',
@@ -63,6 +66,7 @@ const teamList: TeamMember[] = [
     role: 'Head Marketing',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:deepikar@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/deepika.jpg',
   },
   {
     id: 'srujana',
@@ -77,6 +81,7 @@ const teamList: TeamMember[] = [
     role: 'Head Design',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:ankitm@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/ankit2.png',
   },
   {
     id: 'soni',
@@ -84,6 +89,7 @@ const teamList: TeamMember[] = [
     role: 'Head Design',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:soni@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/soni.jpg',
   },
 ];
 
@@ -152,9 +158,13 @@ export const Team: React.FC = () => {
             <div key={member.id} className="team-card">
               {/* Photo Box Placeholder (Empty/Stylized) */}
               <div className="team-photo-placeholder">
-                <div className="avatar-silhouette">
-                  <User size={48} className="user-icon" />
-                </div>
+                {member.image ? (
+                  <img src={member.image} alt={member.name} className="team-member-img" />
+                ) : (
+                  <div className="avatar-silhouette">
+                    <User size={48} className="user-icon" />
+                  </div>
+                )}
                 
                 {/* Social hover options */}
                 <div className="team-social-overlay">
