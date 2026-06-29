@@ -280,6 +280,25 @@
   .about-accent-line {
     height: 180px;
   }
+
+  /* Make highlight cards scrollable horizontally on tablet/mobile */
+  .about-highlights {
+    overflow-x: auto;
+    padding: 8px 4px 20px;
+    margin: 0 -4px;
+    gap: 20px;
+    scrollbar-width: none; /* Hide default scrollbar for Firefox */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-highlights::-webkit-scrollbar {
+    display: none; /* Hide default scrollbar for Chrome/Safari */
+  }
+
+  .about-highlight {
+    flex: 0 0 280px; /* Prevent shrinking and lock width */
+    scroll-snap-align: start;
+  }
 }
 
 @media (max-width: 768px) {
@@ -308,13 +327,25 @@
     margin-bottom: 40px;
   }
 
+  /* Maintain horizontal swipe on mobile, slightly smaller card width */
   .about-highlights {
-    flex-direction: column;
+    overflow-x: auto;
+    flex-direction: row;
     gap: 16px;
+    padding: 8px 4px 20px;
+    margin: 0 -4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .about-highlights::-webkit-scrollbar {
+    display: none;
   }
 
   .about-highlight {
+    flex: 0 0 260px;
     padding: 24px 20px;
+    scroll-snap-align: start;
   }
 }
 

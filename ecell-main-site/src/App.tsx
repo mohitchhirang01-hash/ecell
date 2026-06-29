@@ -3,6 +3,7 @@ import './App.css'
 import { Loader } from './components/Loader/Loader'
 import { Hero } from './components/hero/Hero'
 import { About } from './components/about/About'
+import { Showcase } from './components/showcase/Showcase'
 
 const hasSeenLoader = sessionStorage.getItem('ecell-loader-seen') === 'true'
 
@@ -25,6 +26,7 @@ function App() {
       <div className={`app-content ${showContent ? 'visible' : ''}`}>
         <Hero />
         <About />
+        <Showcase />
       </div>
     </>
   )
