@@ -98,39 +98,11 @@
   box-sizing: border-box;
 }
 
-/* Bento spans */
-.gallery-card-esummit {
-  grid-column: span 2;
-}
-
-.gallery-card-hackathon {
-  grid-column: span 1;
-}
-
-.gallery-card-panel {
-  grid-column: span 1;
-}
-
-.gallery-card-networking {
-  grid-column: span 1;
-}
-
-.gallery-card-pitching {
-  grid-column: span 1;
-}
-
-.gallery-card-incubation {
-  grid-column: span 3;
-}
-
-/* Card Styling */
+/* Card Styling with natural 3:2 aspect ratio to display photos completely */
 .gallery-card-wrapper {
-  height: 320px;
-}
-
-/* Incubation card (span 3) gets a slightly shorter height for balance */
-.gallery-card-incubation {
-  height: 240px;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  box-sizing: border-box;
 }
 
 .gallery-card {
@@ -293,20 +265,9 @@
     padding: 80px 32px;
   }
 
-  .gallery-heading {
-    font-size: 44px;
-  }
-
   .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
-
-  .gallery-card-wrapper {
-    height: 280px;
-  }
-
-  .gallery-card-incubation {
-    height: 200px;
   }
 }
 
@@ -320,22 +281,7 @@
     gap: 24px;
   }
 
-  /* Reset bento column spanning on mobile */
-  .gallery-card-esummit,
-  .gallery-card-hackathon,
-  .gallery-card-panel,
-  .gallery-card-networking,
-  .gallery-card-pitching,
-  .gallery-card-incubation {
-    grid-column: span 1;
-    height: 260px;
-  }
-
   .gallery-card-title {
-    font-size: 18px;
-  }
-
-  .gallery-card-incubation .gallery-card-title {
     font-size: 18px;
   }
 }
