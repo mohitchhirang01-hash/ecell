@@ -22,6 +22,7 @@ const teamList: TeamMember[] = [
     role: 'Overall Coordinator',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:anandb@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/anand.jpeg',
   },
   {
     id: 'hirani',
@@ -37,6 +38,7 @@ const teamList: TeamMember[] = [
     role: 'Head Events',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:gunjan@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/gunjan.jpeg',
   },
   {
     id: 'krishna',
@@ -52,6 +54,7 @@ const teamList: TeamMember[] = [
     role: 'Head Events',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:mohity@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/mohit.jpeg',
   },
   {
     id: 'shreedhar',
@@ -59,6 +62,7 @@ const teamList: TeamMember[] = [
     role: 'Head Startup Development',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:shreedharg@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/shreedhar.jpeg',
   },
   {
     id: 'deepika',
@@ -74,6 +78,7 @@ const teamList: TeamMember[] = [
     role: 'Head Media & Publicity',
     linkedin: 'https://www.linkedin.com',
     email: 'mailto:srujana@iitk.ac.in',
+    image: 'https://www.ecelliitk.org/images/profile_y24/Srujana.jpeg',
   },
   {
     id: 'ankit',
