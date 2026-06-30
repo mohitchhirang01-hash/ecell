@@ -17,132 +17,102 @@ export const Hero: React.FC = () => {
     img.onload = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-
-      // Set the canvas bitmap size to match the image
-      canvas.width = img.width;
-      canvas.height = img.height;
-
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
+
+      canvas.width = img.width;
+      canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
 
-      // Defer the heavy pixel-processing to avoid blocking the main thread
-      // during the critical first-paint window (reduces CLS from layout thrashing)
-      const runChromaKey = () => {
-        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imgData.data;
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imgData.data;
 
-        // Sample sky color from top-left pixel
-        const targetR = data[0];
-        const targetG = data[1];
-        const targetB = data[2];
+      // Sample sky color from top-left pixel
+      const targetR = data[0];
+      const targetG = data[1];
+      const targetB = data[2];
 
-        const threshold = 95;
-        const fadeRange = 30;
+      const threshold = 95;
+      const fadeRange = 30;
 
-        for (let i = 0; i < data.length; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
 
-          // Euclidean distance in RGB color space
-          const dist = Math.sqrt(
-            (r - targetR) ** 2 +
-            (g - targetG) ** 2 +
-            (b - targetB) ** 2
-          );
+        // Euclidean distance in RGB color space
+        const dist = Math.sqrt(
+          (r - targetR) ** 2 +
+          (g - targetG) ** 2 +
+          (b - targetB) ** 2
+        );
 
-          if (dist < threshold) {
-            data[i + 3] = 0; // Fully transparent sky
-          } else if (dist < threshold + fadeRange) {
-            const factor = (dist - threshold) / fadeRange;
-            data[i + 3] = Math.floor(factor * 255); // Feathered transition
-          }
+        if (dist < threshold) {
+          data[i + 3] = 0; // Fully transparent sky
+        } else if (dist < threshold + fadeRange) {
+          const factor = (dist - threshold) / fadeRange;
+          data[i + 3] = Math.floor(factor * 255); // Feathered transition
         }
-
-        ctx.putImageData(imgData, 0, 0);
-      };
-
-      // Use requestIdleCallback where available, else setTimeout
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(runChromaKey);
-      } else {
-        setTimeout(runChromaKey, 0);
       }
+
+      ctx.putImageData(imgData, 0, 0);
     };
   }, []);
 
   useEffect(() => {
-    // Wrap in rAF to ensure DOM layout is fully settled before GSAP
-    // measures element positions. This prevents ScrollTrigger.refresh()
-    // (triggered by Navbar or other components) from recalculating stale
-    // positions and causing a layout shift at ~887ms.
-    const rafId = requestAnimationFrame(() => {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-        tl.fromTo(
-          '.hero-heading-line',
-          { opacity: 0, y: 30 },
+      tl.to(
+        '.hero-heading-line',
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          delay: 0.2,
+        }
+      )
+        .to(
+          '.hero-subtitle',
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+          },
+          '-=0.4'
+        )
+        .to(
+          '.hero-cta-group',
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+          },
+          '-=0.3'
+        )
+        .to(
+          '.hero-scroll-indicator',
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+          },
+          '-=0.2'
+        )
+        .to(
+          '.hero-logo-container',
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            stagger: 0.15,
-            delay: 0.2,
-          }
-        )
-          .fromTo(
-            '.hero-subtitle',
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-            },
-            '-=0.4'
-          )
-          .fromTo(
-            '.hero-cta-group',
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-            },
-            '-=0.3'
-          )
-          .fromTo(
-            '.hero-scroll-indicator',
-            { opacity: 0, y: 15 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-            },
-            '-=0.2'
-          )
-          .fromTo(
-            '.hero-logo-container',
-            { opacity: 0, y: -20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power3.out',
-            },
-            '-=0.4'
-          );
-      }, heroRef);
+            ease: 'power3.out',
+          },
+          '-=0.4'
+        );
+    }, heroRef);
 
-      // Store context for cleanup
-      (heroRef as any)._gsapCtx = ctx;
-    });
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      (heroRef as any)._gsapCtx?.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
