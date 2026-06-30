@@ -1,13 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Calendar, Briefcase, Rocket } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Navbar.css';
 
 import logoImg from '../../assets/logo.png';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface DropdownItem {
   name: string;
@@ -41,39 +37,48 @@ export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
-  const navRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const hoverTimeout = useRef<number | null>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const handleScroll = () => {
+      if (window.scrollY > 120) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-      // Desktop only scrolling animation
-      mm.add('(min-width: 769px)', () => {
-        ScrollTrigger.create({
-          trigger: '#hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          animation: gsap.to(container, {
-            width: '75%',
-            borderRadius: '40px',
-            marginTop: '20px',
-            padding: '10px 32px',
-            backgroundColor: 'rgba(10, 8, 5, 0.85)',
-            borderColor: 'rgba(241, 159, 17, 0.22)',
-            ease: 'none',
-          }),
-        });
+  useEffect(() => {
+    const sectionIds = ['hero', 'about', 'showcase', 'events', 'gallery', 'team'];
+    const observers = sectionIds.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { threshold: 0.2, rootMargin: '-20% 0px -40% 0px' }
+      );
+      observer.observe(el);
+      return { observer, el };
+    });
+
+    return () => {
+      observers.forEach(obs => {
+        if (obs) obs.observer.unobserve(obs.el);
       });
-    }, navRef);
-
-    return () => ctx.revert();
+    };
   }, []);
 
   const handleDropdownEnter = () => {
@@ -102,8 +107,8 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav ref={navRef} className="nav-container">
-      <div ref={containerRef} className="nav-inner">
+    <nav className={`nav-container ${isScrolled ? 'visible' : ''}`}>
+      <div className="nav-inner">
         {/* Logo */}
         <a href="#hero" className="nav-logo-link" onClick={(e) => handleScrollToSection(e, '#hero')}>
           <img src={logoImg} alt="E-Cell IITK" className="nav-logo-img" />
@@ -111,9 +116,16 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Links */}
         <div className="nav-links">
-          <a href="#about" className="nav-link" onClick={(e) => handleScrollToSection(e, '#about')}>
-            About Us
-            <span className="nav-link-underline" />
+          <a
+            href="#about"
+            className={`nav-link text-slide-link ${activeSection === 'about' ? 'active' : ''}`}
+            onClick={(e) => handleScrollToSection(e, '#about')}
+          >
+            <div className="slide-text-wrapper">
+              <span className="split-container">About Us</span>
+              <span className="split-sr">About Us</span>
+            </div>
+            <div className="nav-link-dot" />
           </a>
 
           {/* Initiatives Dropdown */}
@@ -123,16 +135,29 @@ export const Navbar: React.FC = () => {
             onMouseLeave={handleDropdownLeave}
           >
             <button
-              className="nav-link"
+              className={`nav-link text-slide-link ${
+                activeSection === 'showcase' || activeSection === 'events' ? 'active' : ''
+              }`}
               aria-expanded={dropdownOpen}
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              Initiatives
-              <ChevronDown
-                size={14}
-                className={`dropdown-chevron ${dropdownOpen ? 'open' : ''}`}
-              />
-              <span className="nav-link-underline" />
+              <div className="slide-text-wrapper">
+                <span className="split-container">
+                  Initiatives
+                  <ChevronDown
+                    size={14}
+                    className={`dropdown-chevron ${dropdownOpen ? 'open' : ''}`}
+                  />
+                </span>
+                <span className="split-sr">
+                  Initiatives
+                  <ChevronDown
+                    size={14}
+                    className={`dropdown-chevron ${dropdownOpen ? 'open' : ''}`}
+                  />
+                </span>
+              </div>
+              <div className="nav-link-dot" />
             </button>
 
             <AnimatePresence>
@@ -170,14 +195,28 @@ export const Navbar: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          <a href="#events" className="nav-link" onClick={(e) => handleScrollToSection(e, '#events')}>
-            Events
-            <span className="nav-link-underline" />
+          <a
+            href="#events"
+            className={`nav-link text-slide-link ${activeSection === 'events' ? 'active' : ''}`}
+            onClick={(e) => handleScrollToSection(e, '#events')}
+          >
+            <div className="slide-text-wrapper">
+              <span className="split-container">Events</span>
+              <span className="split-sr">Events</span>
+            </div>
+            <div className="nav-link-dot" />
           </a>
 
-          <a href="#testimonials" className="nav-link" onClick={(e) => handleScrollToSection(e, '#testimonials')}>
-            Testimonials
-            <span className="nav-link-underline" />
+          <a
+            href="#testimonials"
+            className={`nav-link text-slide-link ${activeSection === 'testimonials' ? 'active' : ''}`}
+            onClick={(e) => handleScrollToSection(e, '#testimonials')}
+          >
+            <div className="slide-text-wrapper">
+              <span className="split-container">Testimonials</span>
+              <span className="split-sr">Testimonials</span>
+            </div>
+            <div className="nav-link-dot" />
           </a>
         </div>
 
@@ -201,13 +240,13 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile Menu Panel (Bottom Drawer Sheet) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -15, scale: 0.95 }}
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -15, scale: 0.95 }}
+            exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="nav-mobile-menu"
           >
