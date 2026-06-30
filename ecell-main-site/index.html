@@ -10,6 +10,19 @@
     <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2">
     <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/montserrat/v29/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w5aXo.woff2">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Six+Caps&display=optional" rel="stylesheet">
+    <!-- Preload the hero building image so canvas has dimensions on first paint -->
+    <link rel="preload" as="image" href="/building.jpg">
+    <!-- Size-adjusted fallback prevents text reflow when Montserrat arrives -->
+    <style>
+      @font-face {
+        font-family: 'Montserrat Fallback';
+        src: local('Arial');
+        size-adjust: 113.5%;
+        ascent-override: 85%;
+        descent-override: 22%;
+        line-gap-override: 0%;
+      }
+    </style>
     <title>ecell-main-site</title>
   </head>
   <body>

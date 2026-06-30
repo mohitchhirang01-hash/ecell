@@ -73,59 +73,76 @@ export const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // Wrap in rAF to ensure DOM layout is fully settled before GSAP
+    // measures element positions. This prevents ScrollTrigger.refresh()
+    // (triggered by Navbar or other components) from recalculating stale
+    // positions and causing a layout shift at ~887ms.
+    const rafId = requestAnimationFrame(() => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.to(
-        '.hero-heading-line',
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          delay: 0.2,
-        }
-      )
-        .to(
-          '.hero-subtitle',
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-          },
-          '-=0.4'
-        )
-        .to(
-          '.hero-cta-group',
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-          },
-          '-=0.3'
-        )
-        .to(
-          '.hero-scroll-indicator',
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-          },
-          '-=0.2'
-        )
-        .to(
-          '.hero-logo-container',
+        tl.fromTo(
+          '.hero-heading-line',
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: 'power3.out',
-          },
-          '-=0.4'
-        );
-    }, heroRef);
+            stagger: 0.15,
+            delay: 0.2,
+          }
+        )
+          .fromTo(
+            '.hero-subtitle',
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+            },
+            '-=0.4'
+          )
+          .fromTo(
+            '.hero-cta-group',
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+            },
+            '-=0.3'
+          )
+          .fromTo(
+            '.hero-scroll-indicator',
+            { opacity: 0, y: 15 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+            },
+            '-=0.2'
+          )
+          .fromTo(
+            '.hero-logo-container',
+            { opacity: 0, y: -20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+            },
+            '-=0.4'
+          );
+      }, heroRef);
 
-    return () => ctx.revert();
+      // Store context for cleanup
+      (heroRef as any)._gsapCtx = ctx;
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      (heroRef as any)._gsapCtx?.revert();
+    };
   }, []);
 
   return (

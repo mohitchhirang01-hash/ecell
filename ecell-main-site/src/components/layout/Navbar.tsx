@@ -50,30 +50,45 @@ export const Navbar: React.FC = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
+    // Defer ScrollTrigger init to avoid refresh() running during initial
+    // paint. ScrollTrigger.create() internally calls refresh() which measures
+    // #hero's position — if the hero canvas/fonts haven't settled yet, this
+    // triggers a layout recalculation that causes CLS. Double-rAF ensures
+    // we're past the first paint.
+    let rafId: number;
+    let ctx: gsap.Context;
 
-      // Desktop only scrolling animation
-      mm.add('(min-width: 769px)', () => {
-        ScrollTrigger.create({
-          trigger: '#hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          animation: gsap.to(container, {
-            width: '75%',
-            borderRadius: '40px',
-            marginTop: '20px',
-            padding: '10px 32px',
-            backgroundColor: 'rgba(10, 8, 5, 0.85)',
-            borderColor: 'rgba(241, 159, 17, 0.22)',
-            ease: 'none',
-          }),
-        });
+    rafId = requestAnimationFrame(() => {
+      rafId = requestAnimationFrame(() => {
+        ctx = gsap.context(() => {
+          const mm = gsap.matchMedia();
+
+          // Desktop only scrolling animation
+          mm.add('(min-width: 769px)', () => {
+            ScrollTrigger.create({
+              trigger: '#hero',
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true,
+              animation: gsap.to(container, {
+                width: '75%',
+                borderRadius: '40px',
+                marginTop: '20px',
+                padding: '10px 32px',
+                backgroundColor: 'rgba(10, 8, 5, 0.85)',
+                borderColor: 'rgba(241, 159, 17, 0.22)',
+                ease: 'none',
+              }),
+            });
+          });
+        }, navRef);
       });
-    }, navRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx?.revert();
+    };
   }, []);
 
   const handleDropdownEnter = () => {
