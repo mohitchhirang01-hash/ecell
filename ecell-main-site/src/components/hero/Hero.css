@@ -376,18 +376,25 @@
   pointer-events: none;
 }
 
-/* Transparent Building Canvas (Chroma-keyed on the fly) */
+/* Transparent Building Canvas (Chroma-keyed on the fly)
+   Explicit dimensions prevent CLS when JS resizes the canvas on image load. */
 .hero-building-canvas {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  /* Reserve space upfront so the canvas doesn't shift content when resized by JS */
+  width: min(900px, 70vw);
+  height: auto;
+  aspect-ratio: 3 / 4;
   max-height: 80vh;
-  width: auto;
   z-index: 2;
   pointer-events: none;
   opacity: 0.85;
   filter: drop-shadow(0 0 50px rgba(0, 0, 0, 0.8));
+  /* Isolate layout – resizing this element won't shift siblings */
+  contain: layout size style;
+  will-change: transform;
 }
 
 /* ============================================

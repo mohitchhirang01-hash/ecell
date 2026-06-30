@@ -17,45 +17,58 @@ export const Hero: React.FC = () => {
     img.onload = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
 
+      // Set the canvas bitmap size to match the image
       canvas.width = img.width;
       canvas.height = img.height;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
       ctx.drawImage(img, 0, 0);
 
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imgData.data;
+      // Defer the heavy pixel-processing to avoid blocking the main thread
+      // during the critical first-paint window (reduces CLS from layout thrashing)
+      const runChromaKey = () => {
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imgData.data;
 
-      // Sample sky color from top-left pixel
-      const targetR = data[0];
-      const targetG = data[1];
-      const targetB = data[2];
+        // Sample sky color from top-left pixel
+        const targetR = data[0];
+        const targetG = data[1];
+        const targetB = data[2];
 
-      const threshold = 95;
-      const fadeRange = 30;
+        const threshold = 95;
+        const fadeRange = 30;
 
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
 
-        // Euclidean distance in RGB color space
-        const dist = Math.sqrt(
-          (r - targetR) ** 2 +
-          (g - targetG) ** 2 +
-          (b - targetB) ** 2
-        );
+          // Euclidean distance in RGB color space
+          const dist = Math.sqrt(
+            (r - targetR) ** 2 +
+            (g - targetG) ** 2 +
+            (b - targetB) ** 2
+          );
 
-        if (dist < threshold) {
-          data[i + 3] = 0; // Fully transparent sky
-        } else if (dist < threshold + fadeRange) {
-          const factor = (dist - threshold) / fadeRange;
-          data[i + 3] = Math.floor(factor * 255); // Feathered transition
+          if (dist < threshold) {
+            data[i + 3] = 0; // Fully transparent sky
+          } else if (dist < threshold + fadeRange) {
+            const factor = (dist - threshold) / fadeRange;
+            data[i + 3] = Math.floor(factor * 255); // Feathered transition
+          }
         }
-      }
 
-      ctx.putImageData(imgData, 0, 0);
+        ctx.putImageData(imgData, 0, 0);
+      };
+
+      // Use requestIdleCallback where available, else setTimeout
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(runChromaKey);
+      } else {
+        setTimeout(runChromaKey, 0);
+      }
     };
   }, []);
 
